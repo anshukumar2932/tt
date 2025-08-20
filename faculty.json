@@ -1,0 +1,1313 @@
+[
+  {
+    "name": "Aakash Saxena",
+    "rating": 3.5,
+    "review": "Teaching: 4, Evaluation: 3, Behaviour: 4, Internals: 3, Class Average : High, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Abha Gupta",
+    "rating": 4,
+    "review": "Teaching: 4, Evaluation: 4, Behaviour: 4, Internals: 4, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Abha Trivedi",
+    "rating": 4.5,
+    "review": "Teaching: 5, Evaluation: 4, Behaviour: 5, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Abhay Vidyarthi",
+    "rating": 4.25,
+    "review": "Teaching: 4, Evaluation: 4, Behaviour: 5, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Abhishek Dilip Joshi",
+    "rating": 4.25,
+    "review": "Teaching: 5, Evaluation: 4, Behaviour: 4, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Abhishek Shrivastav",
+    "rating": 4.75,
+    "review": "Teaching: 4, Evaluation: 5, Behaviour: 5, Internals: 5, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Abrar Yaqoob",
+    "rating": 4.75,
+    "review": "Teaching: 5, Evaluation: 5, Behaviour: 5, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Achu Govind",
+    "rating": 4.75,
+    "review": "Teaching: 4, Evaluation: 5, Behaviour: 5, Internals: 5, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Ajay Kumar Bhurjee",
+    "rating": 3.63,
+    "review": "Teaching: 3.5, Evaluation: 4, Behaviour: 3.5, Internals: 3.5, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Ajay Sharma",
+    "rating": 4.25,
+    "review": "Teaching: 4, Evaluation: 4, Behaviour: 5, Internals: 4, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Akshara Makrarya",
+    "rating": 3.5,
+    "review": "Teaching: 4, Evaluation: 3, Behaviour: 4, Internals: 3, Class Average : High, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Akshay",
+    "rating": 2.75,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 2, Internals: 3, Class Average : High, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Akshay Jadav",
+    "rating": 4.75,
+    "review": "Teaching: 5, Evaluation: 4, Behaviour: 5, Internals: 5, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Amit Kumar Singh",
+    "rating": 4.25,
+    "review": "Teaching: 4, Evaluation: 5, Behaviour: 4, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Amit Thakur",
+    "rating": 3.69,
+    "review": "Teaching: 3.75, Evaluation: 3.25, Behaviour: 3.75, Internals: 4, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Anand Motwani",
+    "rating": 4,
+    "review": "Teaching: 3.5, Evaluation: 4, Behaviour: 4.5, Internals: 4, Class Average : Low, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Anant Kumar Shukla",
+    "rating": 1.58,
+    "review": "Teaching: 1, Evaluation: 2, Behaviour: 2, Internals: 1.32, Class Average : Low, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Anil Kumar Shukla",
+    "rating": 4,
+    "review": "Teaching: 4, Evaluation: 3.5, Behaviour: 4.5, Internals: 4, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Anirban Bhowmik",
+    "rating": 3.87,
+    "review": "Teaching: 4.125, Evaluation: 3.3214, Behaviour: 4.0535, Internals: 3.982, Class Average : Low, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Anita Yadav",
+    "rating": 4.25,
+    "review": "Teaching: 3.35, Evaluation: 4.65, Behaviour: 4.5, Internals: 4.15, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Ankur Beohar",
+    "rating": 4,
+    "review": "Teaching: 4, Evaluation: 4, Behaviour: 4, Internals: 4, Class Average : High, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Ankit Pal",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average : Low, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Antima Jain",
+    "rating": 1.25,
+    "review": "Teaching: 1, Evaluation: 1, Behaviour: 1, Internals: 2, Class Average : Medium, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Arindam Dutta",
+    "rating": 2.75,
+    "review": "Teaching: 1, Evaluation: 2, Behaviour: 5, Internals: 3, Class Average : Low, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Arindam Ghosh",
+    "rating": 5,
+    "review": "Teaching: 5, Evaluation: 5, Behaviour: 5, Internals: 5, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Arindam Sadhukhan",
+    "rating": 4.5,
+    "review": "Teaching: 3, Evaluation: 5, Behaviour: 5, Internals: 5, Class Average : Low, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Arpita Banoria",
+    "rating": 4.5,
+    "review": "Teaching: 4, Evaluation: 5, Behaviour: 4, Internals: 5, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Ashfaq Ahmed Najar",
+    "rating": 3.5,
+    "review": "Teaching: 2, Evaluation: 3, Behaviour: 5, Internals: 4, Class Average : Low, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Ashish Kesarwani",
+    "rating": 3.5,
+    "review": "Teaching: 5, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Ashish Tripathi",
+    "rating": 4.25,
+    "review": "Teaching: 4, Evaluation: 5, Behaviour: 4, Internals: 4, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Ashok Kumar Baral",
+    "rating": 4,
+    "review": "Teaching: 4, Evaluation: 4, Behaviour: 4, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Atul Aman",
+    "rating": 4.25,
+    "review": "Teaching: 2, Evaluation: 5, Behaviour: 5, Internals: 5, Class Average : High, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Avirup Das",
+    "rating": 3.75,
+    "review": "Teaching: 3, Evaluation: 4, Behaviour: 4, Internals: 4, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Azra Nazir",
+    "rating": 4.75,
+    "review": "Teaching: 4, Evaluation: 5, Behaviour: 5, Internals: 5, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Baseera A",
+    "rating": 4.25,
+    "review": "Teaching: 3, Evaluation: 4, Behaviour: 5, Internals: 5, Class Average : High, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Benevatho Jaison A",
+    "rating": 4.45,
+    "review": "Teaching: 4.8, Evaluation: 4, Behaviour: 5, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Bhavana Bagherwal",
+    "rating": 4.24,
+    "review": "Teaching: 4.3, Evaluation: 4.1, Behaviour: 4.35, Internals: 3.875, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Bhakti Parashar",
+    "rating": 4,
+    "review": "Teaching: 4, Evaluation: 4, Behaviour: 5, Internals: 3, Class Average : Low, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Bhumika Choksi",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 2, Behaviour: 3, Internals: 4, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Chandrama Swain",
+    "rating": 3.75,
+    "review": "Teaching: 4, Evaluation: 3.5, Behaviour: 3, Internals: 2.5, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Deep Chandra Uphadhya",
+    "rating": 3.5,
+    "review": "Teaching: 2, Evaluation: 4, Behaviour: 4, Internals: 4, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Deepankar Sutradhar",
+    "rating": 4.38,
+    "review": "Teaching: 3, Evaluation: 4.5, Behaviour: 4.25, Internals: 5, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Dev Brat Gupta",
+    "rating": 2.33,
+    "review": "Teaching: 2, Evaluation: 2.33, Behaviour: 3, Internals: 2, Class Average : Medium, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Devaraju S",
+    "rating": 4.13,
+    "review": "Teaching: 4, Evaluation: 3, Behaviour: 4.5, Internals: 4, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Devraj Vishnu",
+    "rating": 4.25,
+    "review": "Teaching: 3, Evaluation: 5, Behaviour: 4, Internals: 5, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Dheresh Soni",
+    "rating": 3.5,
+    "review": "Teaching: 3, Evaluation: 4, Behaviour: 3, Internals: 4, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Dheeresh Soni",
+    "rating": 4.33,
+    "review": "Teaching: 3.66, Evaluation: 4.33, Behaviour: 5, Internals: 4.33, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Divya Haridas",
+    "rating": 4.74,
+    "review": "Teaching: 4.5, Evaluation: 4.83, Behaviour: 4.83, Internals: 4.83, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Divya Thakur",
+    "rating": 4.25,
+    "review": "Teaching: 3, Evaluation: 5, Behaviour: 5, Internals: 4, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Dondu Harish",
+    "rating": 2.75,
+    "review": "Teaching: 2, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average : Low, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "E Nirmala",
+    "rating": 4.5,
+    "review": "Teaching: 4, Evaluation: 5, Behaviour: 5, Internals: 4, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "E Prasad",
+    "rating": 2.75,
+    "review": "Teaching: 5, Evaluation: 2, Behaviour: 2, Internals: 2, Class Average : High, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "G Prabhu Kannan",
+    "rating": 3.13,
+    "review": "Teaching: 2, Evaluation: 3, Behaviour: 4, Internals: 3.5, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "G R Hemlakshmi",
+    "rating": 3.5,
+    "review": "Teaching: 3, Evaluation: 2, Behaviour: 5, Internals: 4, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "G.L Balaji",
+    "rating": 4.75,
+    "review": "Teaching: 5, Evaluation: 5, Behaviour: 5, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Gopal Singh Tandel",
+    "rating": 4.5,
+    "review": "Teaching: 5, Evaluation: 5, Behaviour: 4, Internals: 4, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Govind Prasad Pandya",
+    "rating": 4,
+    "review": "Teaching: 3, Evaluation: 4, Behaviour: 5, Internals: 4, Class Average : High, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Hariharan R",
+    "rating": 4,
+    "review": "Teaching: 4, Evaluation: 4, Behaviour: 4, Internals: 4, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Harish Chandra",
+    "rating": 3.75,
+    "review": "Teaching: 3, Evaluation: 5, Behaviour: 3, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Hemant Nashine",
+    "rating": 1.25,
+    "review": "Teaching: 1, Evaluation: 1, Behaviour: 2, Internals: 1, Class Average : Low, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Hemanta Kallita",
+    "rating": 4.75,
+    "review": "Teaching: 4, Evaluation: 5, Behaviour: 5, Internals: 5, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Hemlatha Gangwar",
+    "rating": 4,
+    "review": "Teaching: 2, Evaluation: 4, Behaviour: 5, Internals: 5, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Humaira Fatima",
+    "rating": 4.75,
+    "review": "Teaching: 4, Evaluation: 5, Behaviour: 5, Internals: 5, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Javed Khan Sheikh",
+    "rating": 2.88,
+    "review": "Teaching: 2, Evaluation: 3, Behaviour: 3, Internals: 3.5, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Jitendra Mathur",
+    "rating": 5,
+    "review": "Teaching: 5, Evaluation: 5, Behaviour: 5, Internals: null, Class Average : null, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Jitendra Parmar",
+    "rating": 4.5,
+    "review": "Teaching: 4, Evaluation: 4, Behaviour: 5, Internals: 5, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "JP Shritharanaya",
+    "rating": 1.75,
+    "review": "Teaching: 3, Evaluation: 1, Behaviour: 1, Internals: 2, Class Average : High, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Juhi Kesarwani",
+    "rating": 4.75,
+    "review": "Teaching: 4, Evaluation: 5, Behaviour: 5, Internals: 5, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Juhi Yasmeen",
+    "rating": 3.75,
+    "review": "Teaching: 3, Evaluation: 4, Behaviour: 4, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Jyothi Aruna",
+    "rating": 4.5,
+    "review": "Teaching: 4, Evaluation: 4, Behaviour: 5, Internals: 5, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Jyoti Chauhan",
+    "rating": 2.75,
+    "review": "Teaching: 3, Evaluation: 2.5, Behaviour: 3, Internals: 3, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "K Pallavi",
+    "rating": 4.75,
+    "review": "Teaching: 5, Evaluation: 5, Behaviour: 4, Internals: 5, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Karishma Tiwari",
+    "rating": 2.88,
+    "review": "Teaching: 2.75, Evaluation: 2.75, Behaviour: 3, Internals: 3, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Kiran Kumar Behera",
+    "rating": 3.75,
+    "review": "Teaching: 4, Evaluation: 3, Behaviour: 4, Internals: 4, Class Average : Low, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "KK Nair",
+    "rating": 4.5,
+    "review": "Teaching: 5, Evaluation: 4, Behaviour: 5, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Krishna",
+    "rating": 1,
+    "review": "Teaching: 1, Evaluation: 1, Behaviour: 1, Internals: 1, Class Average : High, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Kumkum Dubey",
+    "rating": 3.75,
+    "review": "Teaching: 5, Evaluation: 4, Behaviour: 3, Internals: 3, Class Average : High, Final Remark: Medium"
+  },
+  {
+    "name": "L Sathish Kumar",
+    "rating": 2.33,
+    "review": "Teaching: 2, Evaluation: 2.33, Behaviour: 2, Internals: 2.66, Class Average : Medium, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Lokesh Malviya",
+    "rating": 3.58,
+    "review": "Teaching: 1.66, Evaluation: 4, Behaviour: 4, Internals: 4.66, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "M Suresh",
+    "rating": 2.91,
+    "review": "Teaching: 2.66, Evaluation: 2.33, Behaviour: 3.66, Internals: 3, Class Average : High, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "M.R Thiyagu Priyadarshan",
+    "rating": 2.25,
+    "review": "Teaching: 2, Evaluation: 2, Behaviour: 3, Internals: 2, Class Average : Low, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Mamta Agarwal",
+    "rating": 3.75,
+    "review": "Teaching: 3.5, Evaluation: 3.5, Behaviour: 4.5, Internals: 3.5, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Manickam A",
+    "rating": 4.25,
+    "review": "Teaching: 3, Evaluation: 4, Behaviour: 5, Internals: 5, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Manimaran",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 2, Behaviour: 4, Internals: 3, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Manisha",
+    "rating": 4.25,
+    "review": "Teaching: 4, Evaluation: 4, Behaviour: 4, Internals: 5, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Manisha Jain",
+    "rating": 3,
+    "review": "Teaching: 5, Evaluation: 2, Behaviour: 3, Internals: 2, Class Average : Low, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Manorma Chauhan",
+    "rating": 4.25,
+    "review": "Teaching: 4, Evaluation: 4, Behaviour: 5, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Mayank Gupta",
+    "rating": 4.5,
+    "review": "Teaching: 4, Evaluation: 4, Behaviour: 5, Internals: 5, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Mayank Sharma",
+    "rating": 4.16,
+    "review": "Teaching: 4.66, Evaluation: 3.33, Behaviour: 4.33, Internals: 4.33, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Mayuri Kailas",
+    "rating": 4,
+    "review": "Teaching: 4, Evaluation: 3, Behaviour: 4, Internals: 5, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "MK Jayanthi",
+    "rating": 3,
+    "review": "Teaching: 2, Evaluation: 5, Behaviour: 2, Internals: 3, Class Average : High, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Mohammad Sultan Alam",
+    "rating": 3.08,
+    "review": "Teaching: 2, Evaluation: 3.33, Behaviour: 3.66, Internals: 3.33, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Mohh. Rafi Lone",
+    "rating": 3.25,
+    "review": "Teaching: 2, Evaluation: 3, Behaviour: 5, Internals: 3, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Monica P",
+    "rating": 1,
+    "review": "Teaching: 1, Evaluation: 1, Behaviour: 1, Internals: 1, Class Average : Low, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Nafisa Hussain",
+    "rating": 2,
+    "review": "Teaching: 2, Evaluation: 2, Behaviour: 1, Internals: 3, Class Average : Low, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Narendra Babu",
+    "rating": 2,
+    "review": "Teaching: 3, Evaluation: 2, Behaviour: 1, Internals: 2, Class Average : Low, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Navneet Kumar",
+    "rating": 3.5,
+    "review": "Teaching: 4, Evaluation: 2, Behaviour: 3, Internals: 5, Class Average : Low, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Navneet Verma",
+    "rating": 4.75,
+    "review": "Teaching: 5, Evaluation: 5, Behaviour: 5, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Neha Choubey",
+    "rating": 4.25,
+    "review": "Teaching: 5, Evaluation: 3, Behaviour: 4, Internals: 5, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Nella Anveshkumar",
+    "rating": 3.75,
+    "review": "Teaching: 4, Evaluation: 4, Behaviour: 4, Internals: 3, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Nilamadhab Mishra",
+    "rating": 2.5,
+    "review": "Teaching: 3, Evaluation: 2, Behaviour: 3, Internals: 2, Class Average : Low, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Nilam Venkateshwarao",
+    "rating": 1.5,
+    "review": "Teaching: 2, Evaluation: 1, Behaviour: 1, Internals: 2, Class Average : Low, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Nikhil Pateria",
+    "rating": 3.75,
+    "review": "Teaching: 4, Evaluation: 4, Behaviour: 3, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Nitin Kumar Mishra",
+    "rating": 2.5,
+    "review": "Teaching: 2, Evaluation: 2, Behaviour: 3, Internals: 3, Class Average : Low, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Palash Jain",
+    "rating": 3.25,
+    "review": "Teaching: 4, Evaluation: 2, Behaviour: 3, Internals: 4, Class Average : Low, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Pallabi Sarkar",
+    "rating": 4.5,
+    "review": "Teaching: 5, Evaluation: 4, Behaviour: 5, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Pallavi",
+    "rating": 2,
+    "review": "Teaching: 4, Evaluation: 1, Behaviour: 2, Internals: 1, Class Average : Low, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Pavan Mehta",
+    "rating": 1.75,
+    "review": "Teaching: 1, Evaluation: 1, Behaviour: 4, Internals: 1, Class Average : Medium, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Payal Saxena",
+    "rating": 4.5,
+    "review": "Teaching: 5, Evaluation: 5, Behaviour: 5, Internals: 3, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Piyush",
+    "rating": 1.25,
+    "review": "Teaching: 1, Evaluation: 1, Behaviour: 2, Internals: 1, Class Average : Medium, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Pooja",
+    "rating": 3.25,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 4, Internals: 3, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Pooja Lalwani",
+    "rating": 5,
+    "review": "Teaching: 5, Evaluation: 5, Behaviour: 5, Internals: 5, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Poonkundran",
+    "rating": 4.5,
+    "review": "Teaching: 4, Evaluation: 4.5, Behaviour: 5, Internals: 4.5, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "PR Bhuvaneshwai",
+    "rating": 3.75,
+    "review": "Teaching: 4, Evaluation: 4, Behaviour: 4, Internals: 3, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Prabhu M",
+    "rating": 4.5,
+    "review": "Teaching: 4, Evaluation: 5, Behaviour: 5, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Pradeep",
+    "rating": 4.5,
+    "review": "Teaching: 3, Evaluation: 5, Behaviour: 5, Internals: 5, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Pradeep Kumar Kashyap",
+    "rating": 2.75,
+    "review": "Teaching: 4, Evaluation: 2, Behaviour: 3, Internals: 2, Class Average : Low, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Pradeep Kumar Mishra",
+    "rating": 2.49,
+    "review": "Teaching: 2.66, Evaluation: 2.33, Behaviour: 2.66, Internals: 2.33, Class Average : Medium, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Pranjali Malviya",
+    "rating": 2.08,
+    "review": "Teaching: 2.66, Evaluation: 1.33, Behaviour: 1.66, Internals: 2.66, Class Average : Low, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Pranshu Pranjal",
+    "rating": 4.5,
+    "review": "Teaching: 4, Evaluation: 4, Behaviour: 5, Internals: 5, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Prashant Kumar Pandey",
+    "rating": 2.5,
+    "review": "Teaching: 4, Evaluation: 3, Behaviour: 2, Internals: 1, Class Average : Low, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Praveen Kumar Lalwani",
+    "rating": 3.5,
+    "review": "Teaching: 3.2, Evaluation: 3.2, Behaviour: 3.8, Internals: 3.8, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Priyank Nema",
+    "rating": 4.5,
+    "review": "Teaching: 4, Evaluation: 5, Behaviour: 4, Internals: 5, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Priyanka Roy",
+    "rating": 4.75,
+    "review": "Teaching: 4, Evaluation: 5, Behaviour: 5, Internals: 5, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Pushpdant Jain",
+    "rating": 4.75,
+    "review": "Teaching: 5, Evaluation: 4, Behaviour: 5, Internals: 5, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "R.P Sugavaneshwar",
+    "rating": 2.25,
+    "review": "Teaching: 2, Evaluation: 1, Behaviour: 1, Internals: 2, Class Average : Low, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Rabia Musheer",
+    "rating": 3.4,
+    "review": "Teaching: 3.2, Evaluation: 3.2, Behaviour: 3.2, Internals: 4, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Rahul Kumar Chaturvedi",
+    "rating": 4.5,
+    "review": "Teaching: 4, Evaluation: 4, Behaviour: 5, Internals: 5, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Rajdeep Ghosh",
+    "rating": 4.75,
+    "review": "Teaching: 5, Evaluation: 5, Behaviour: 5, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Rajeev Saxena",
+    "rating": 4,
+    "review": "Teaching: 3, Evaluation: 5, Behaviour: 3, Internals: 5, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Rajit Nair",
+    "rating": 3.75,
+    "review": "Teaching: 3.375, Evaluation: 3.5, Behaviour: 4.75, Internals: 3.375, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Ram Kumar",
+    "rating": 5,
+    "review": "Teaching: 5, Evaluation: 3, Behaviour: 4, Internals: 3, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "RamRaj Dangi",
+    "rating": 3.75,
+    "review": "Teaching: 4, Evaluation: 3, Behaviour: 4, Internals: 4, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Ramesh Saha",
+    "rating": 3.25,
+    "review": "Teaching: 2, Evaluation: 2, Behaviour: 4, Internals: 5, Class Average : Low, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Randeep Singh Payal",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 4, Internals: 2, Class Average : Low, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Ranju Yadav",
+    "rating": 3.25,
+    "review": "Teaching: 3.5, Evaluation: 2, Behaviour: 4.5, Internals: 3, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Ranjitha Kumar",
+    "rating": 4,
+    "review": "Teaching: 4, Evaluation: 4, Behaviour: 4, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Reena Jain",
+    "rating": 1,
+    "review": "Teaching: 1, Evaluation: 1, Behaviour: 1, Internals: 1, Class Average : Low, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Ribu Mathew",
+    "rating": 4.25,
+    "review": "Teaching: 3, Evaluation: 4, Behaviour: 5, Internals: 5, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Rouf Khan",
+    "rating": 4.25,
+    "review": "Teaching: 5, Evaluation: 4, Behaviour: 5, Internals: 3, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "S Devaraju",
+    "rating": 4.56,
+    "review": "Teaching: 4.75, Evaluation: 4.5, Behaviour: 4.75, Internals: 4.25, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "S Periyanagi",
+    "rating": 3.75,
+    "review": "Teaching: 5, Evaluation: 4, Behaviour: 3, Internals: 3, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "S Saravanan",
+    "rating": 4.5,
+    "review": "Teaching: 4, Evaluation: 5, Behaviour: 4, Internals: 4, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Sadanand Singh",
+    "rating": 3.25,
+    "review": "Teaching: 2.5, Evaluation: 3.5, Behaviour: 3, Internals: 4, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Sajjad Ahmad",
+    "rating": 5,
+    "review": "Teaching: 5, Evaluation: 5, Behaviour: 5, Internals: 5, Class Average : Low, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Sana Afreen",
+    "rating": 3.06,
+    "review": "Teaching: 3.5, Evaluation: 3.25, Behaviour: 2, Internals: 3.5, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Sandip Mal",
+    "rating": 2.75,
+    "review": "Teaching: 2, Evaluation: 2, Behaviour: 3, Internals: 4, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Sandeep Sahu",
+    "rating": 4,
+    "review": "Teaching: 3, Evaluation: 4, Behaviour: 5, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Sanjib Nayak",
+    "rating": 4.75,
+    "review": "Teaching: 4, Evaluation: 5, Behaviour: 5, Internals: 5, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Sanat Jain",
+    "rating": 3.25,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 2, Internals: 5, Class Average : Low, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Santosh Kumar Bhal",
+    "rating": 3.25,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 4, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Santosh Kumar Tripathy",
+    "rating": 4.75,
+    "review": "Teaching: 4, Evaluation: 5, Behaviour: 5, Internals: 5, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Saurabh Bhargava",
+    "rating": 4,
+    "review": "Teaching: 5, Evaluation: 4, Behaviour: 3, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Saurabh Kumar Maurya",
+    "rating": 3.75,
+    "review": "Teaching: 4, Evaluation: 4, Behaviour: 4, Internals: 3, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Saurabh Mishra",
+    "rating": 4.25,
+    "review": "Teaching: 4, Evaluation: 4, Behaviour: 5, Internals: 4, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Saurabh Prasad",
+    "rating": 4.5,
+    "review": "Teaching: 4, Evaluation: 4.67, Behaviour: 5, Internals: 5, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Sayed Mohammad Zeeshan",
+    "rating": 4.25,
+    "review": "Teaching: 4, Evaluation: 4, Behaviour: 5, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Shahab Saquib Sohail",
+    "rating": 4.25,
+    "review": "Teaching: 2, Evaluation: 5, Behaviour: 5, Internals: 5, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Shahid Abdullah",
+    "rating": 4.88,
+    "review": "Teaching: 5, Evaluation: 4.5, Behaviour: 5, Internals: 5, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Sharad Chandra Tripathi",
+    "rating": 2,
+    "review": "Teaching: 3, Evaluation: 1, Behaviour: 2, Internals: 2, Class Average : Low, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Sharmila Joseph",
+    "rating": 2.25,
+    "review": "Teaching: 3, Evaluation: 1, Behaviour: 2, Internals: 3, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Sheerin Kayenat",
+    "rating": 3.75,
+    "review": "Teaching: 4, Evaluation: 3, Behaviour: 4, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Shiju E",
+    "rating": 4.88,
+    "review": "Teaching: 5, Evaluation: 5, Behaviour: 5, Internals: 4.5, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Shilpa Suman",
+    "rating": 2.63,
+    "review": "Teaching: 2, Evaluation: 2, Behaviour: 3, Internals: 3.5, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Shweta Mukherkjee",
+    "rating": 4,
+    "review": "Teaching: 4, Evaluation: 4, Behaviour: 4, Internals: 4, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Shweta Saxena",
+    "rating": 3.75,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 5, Internals: 4, Class Average : High, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Shweta Singh",
+    "rating": 4.25,
+    "review": "Teaching: 4, Evaluation: 5, Behaviour: 4, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Siddharth K.V",
+    "rating": 2.25,
+    "review": "Teaching: 3, Evaluation: 2, Behaviour: 2, Internals: 2, Class Average : Low, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Siddharth Singh Chouhan",
+    "rating": 3.38,
+    "review": "Teaching: 2.75, Evaluation: 3, Behaviour: 4.25, Internals: 3.5, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Sirajudeen",
+    "rating": 5,
+    "review": "Teaching: 5, Evaluation: 5, Behaviour: 5, Internals: 5, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Soma Saha",
+    "rating": 1.75,
+    "review": "Teaching: 1, Evaluation: 3, Behaviour: 1, Internals: 2, Class Average : Medium, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Sonali Shrivastav",
+    "rating": 3.13,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3.25, Internals: 3.25, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Sonam Goswami",
+    "rating": 4,
+    "review": "Teaching: 4, Evaluation: 3.5, Behaviour: 4.5, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Sonal Gupta",
+    "rating": 3,
+    "review": "Teaching: 4, Evaluation: 3, Behaviour: 3, Internals: 2, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Sonal Trivadi",
+    "rating": 1.5,
+    "review": "Teaching: 3, Evaluation: 1, Behaviour: 1, Internals: 1, Class Average : Medium, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Sonjoy Pan",
+    "rating": 2.25,
+    "review": "Teaching: 3, Evaluation: 2, Behaviour: 2, Internals: 2, Class Average : Medium, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Sophia Lee",
+    "rating": 4.2,
+    "review": "Teaching: 4, Evaluation: 4, Behaviour: 4, Internals: 4, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Subhash Chandra Bose J",
+    "rating": 4,
+    "review": "Teaching: 4, Evaluation: 4, Behaviour: 4, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Suchismita Patra",
+    "rating": 3.5,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 4, Internals: 4, Class Average : Low, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Suchetna Sadhukhan",
+    "rating": 2.68,
+    "review": "Teaching: 2.14, Evaluation: 2, Behaviour: 3.28, Internals: 3.28, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Sugavaneshwar RP",
+    "rating": 3.83,
+    "review": "Teaching: 3, Evaluation: 4.33, Behaviour: 4.33, Internals: 4.33, Class Average : Low, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Sughvanewshar Ramu Pasupathi",
+    "rating": 4,
+    "review": "Teaching: 3, Evaluation: 5, Behaviour: 4, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Sukumar",
+    "rating": 4.25,
+    "review": "Teaching: 2, Evaluation: 5, Behaviour: 5, Internals: 5, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Sumit Mittal",
+    "rating": 4.45,
+    "review": "Teaching: 4.2, Evaluation: 4.6, Behaviour: 4.8, Internals: 4.2, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Sumit Som",
+    "rating": 3.5,
+    "review": "Teaching: 3, Evaluation: 2, Behaviour: 5, Internals: 4, Class Average : Low, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Suresh Babu",
+    "rating": 4,
+    "review": "Teaching: 5, Evaluation: 2, Behaviour: 5, Internals: 4, Class Average : Low, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Suresh Dara",
+    "rating": 3.25,
+    "review": "Teaching: 4, Evaluation: 4, Behaviour: 3, Internals: 2, Class Average : High, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Swati Chauhan",
+    "rating": 1.75,
+    "review": "Teaching: 3, Evaluation: 1, Behaviour: 2, Internals: 1, Class Average : Low, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Thiyagu",
+    "rating": 5,
+    "review": "Teaching: 5, Evaluation: 5, Behaviour: 5, Internals: 5, Class Average : High, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Uday Kumar",
+    "rating": 4,
+    "review": "Teaching: 3, Evaluation: 4, Behaviour: 5, Internals: 4, Class Average : Low, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Ujjwal Kumar Mishra",
+    "rating": 3,
+    "review": "Teaching: 3.5, Evaluation: 2.5, Behaviour: 3, Internals: 3, Class Average : Low, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Vairachilli",
+    "rating": 1,
+    "review": "Teaching: 1, Evaluation: 1, Behaviour: 1, Internals: 1, Class Average : Low, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Vijay Kumar Patel",
+    "rating": 2,
+    "review": "Teaching: 2, Evaluation: 2, Behaviour: 2, Internals: 2, Class Average : Low, Final Remark: Not Recommended🚫"
+  },
+  {
+    "name": "Vijay Kumar Trivedi",
+    "rating": 4,
+    "review": "Teaching: 3.5, Evaluation: 4.5, Behaviour: 4, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Vinod Bhatt",
+    "rating": 3.75,
+    "review": "Teaching: 4, Evaluation: 4, Behaviour: 4, Internals: 3, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Vinod Jatav",
+    "rating": 4.5,
+    "review": "Teaching: 5, Evaluation: 4, Behaviour: 5, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Vinod Kumar",
+    "rating": 4.25,
+    "review": "Teaching: 4, Evaluation: 4, Behaviour: 5, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Vipin Jain",
+    "rating": 4,
+    "review": "Teaching: 3, Evaluation: 4, Behaviour: 4.5, Internals: 4.5, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Virendra Singh Kushwaha",
+    "rating": 3.42,
+    "review": "Teaching: 2.33, Evaluation: 3.33, Behaviour: 4, Internals: 4, Class Average : High, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Yogesh Shukla",
+    "rating": 2.63,
+    "review": "Teaching: 3.25, Evaluation: 2.5, Behaviour: 2.5, Internals: 2.25, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Yogita Dwivedi",
+    "rating": 4,
+    "review": "Teaching: 4, Evaluation: 4, Behaviour: 3.5, Internals: 4.5, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+  {
+    "name": "Sanay Naha",
+    "rating": 5,
+    "review": "Teaching: 5, Evaluation: 5, Behaviour: 5, Internals: 4.5, Class Average : Medium, Final Remark: Go and GRAB this teacher. It is a Steal😍"
+  },
+  {
+    "name": "Monika Sankat",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3.5, Behaviour: 4, Internals: 4, Class Average : Medium, Final Remark: Moderately Recommended🙂 "
+  },
+  {
+    "name": "Hemraj Lamkuche",
+    "rating": 5,
+    "review": "Teaching: 5, Evaluation: 5, Behaviour: 5, Internals: 4.5, Class Average : Medium, Final Remark: Go and GRAB this teacher. It is a Steal😍"
+  },
+  {
+    "name": "Rizwan ur Rehman",
+    "rating": 5,
+    "review": "Teaching: 5, Evaluation: 5, Behaviour: 5, Internals: 4, Class Average : Medium, Final Remark: Go and GRAB this teacher. It is a Steal😍"
+  },
+  {
+    "name": "Palas Mandal",
+    "rating": 4,
+    "review": "Teaching: 5, Evaluation: 4, Behaviour: 5, Internals: 3, Class Average : Medium, Final Remark: Highly Recommended🔥"
+  },
+// added here 
+{
+    "name": "Dr. Ashfaq Ahmad Najar ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. PALLAV ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Abhishekh ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr Shagun Sharma ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Mostaid Ahmed ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Evangeline Christina A ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Kumari Ambe Verma Teaching Fellow  Dr. Anupam Sen ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Palas Mandal ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Rahul Shrivastava ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Gobinda Ghosh ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Priscilla Dinkar Moyya ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Geetanjali Giri Senior ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Irfan Alam ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Rakesh Srivastava ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Achu Govind K.R Teaching Fellow  Dr. Jastin Samuel R ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Karthik G L ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Vijay Birchha ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Shahana Gajala Qureshi ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Munsifa Firdaus Khan Barbhuyan ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. S. Poonkuntran  ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Ashfaq Ahmad Najar ashfaqahmadnajar@vitbhopal.ac.in  University Ad",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Vijay Birchha Senior ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Shahana Gajala Qureshi ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Munsifa Firdaus Khan Barbhuyan ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Sharmila Joseph Teaching Fellow  Dr. Sandeep Kumar Monga Associate  ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Lokesh Malviya ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Daood Saleem ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Vipin Kumar Mishra ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Subrata Nath ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Rupesh Kumari ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Bandla Pavan Babu ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Enagandula Prasad ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Chandrama Swain ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Abdul Rashid ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Jay Prakash Maurya ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Nilesh Kunhare ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Abhishek Raj Assitant  ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Narottam Das Patel ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Mohd Rafi Lone ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Badla Pawan Babu ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Raghavendra Mishra ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Abhishek Kumar Shukla ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Priyanka Roy ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Jyoti Chauhan ",
+    "rating": 5,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Pijush Kanti Mondal ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Abhinav Kumar (Senior) ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Rajneesh Kumar Patel ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Dip Mukherjee ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Ajay Sharma ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Monica P. ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Adnan Abbasi ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Ranjitha Kumar ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Sanay Naha ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Jagriti Gupta ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Md. Tauseef Qamar ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  },
+  {
+    "name": "Dr. Debashis Adhikari  ",
+    "rating": 3,
+    "review": "Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂"
+  }
+]

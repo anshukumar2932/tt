@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FFCS Maker - Faculty Rating Portal</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CS583DXQC7"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-CS583DXQC7');
+    </script>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .animated-grid-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(to right, rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: moveGrid 60s linear infinite;
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: -1;
+        }
+        @keyframes moveGrid {
+            from { background-position: 0 0; }
+            to { background-position: 4000px 4000px; }
+        }
+        .pulse {
+            animation: pulse 4s infinite alternate;
+        }
+        @keyframes pulse {
+            0% { text-shadow: 0 0 10px rgba(0, 255, 255, 0.7); }
+            100% { text-shadow: 0 0 15px rgba(0, 255, 255, 0.9), 0 0 25px rgba(0, 255, 255, 0.5); }
+        }
+        .scanline::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #00ffff, transparent);
+            animation: scanline 3s linear infinite;
+        }
+        @keyframes scanline {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        .control-panel {
+            position: relative;
+            overflow: hidden;
+        }
+        .control-panel::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #00ffff, transparent);
+            animation: scanline 6s linear infinite;
+        }
+        .highlight {
+            background-color: rgba(0, 255, 170, 0.3);
+            border-color: #00ff88;
+            animation: highlightPulse 2s infinite alternate;
+        }
+        @keyframes highlightPulse {
+            0% { box-shadow: inset 0 0 10px rgba(0, 255, 170, 0.3); }
+            100% { box-shadow: inset 0 0 20px rgba(0, 255, 170, 0.5); }
+        }
+        .highlight::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 45%, rgba(0, 255, 255, 0.15) 50%, transparent 55%);
+            animation: glimmer 3s infinite linear;
+            pointer-events: none;
+        }
+        @keyframes glimmer {
+            0% { background-position: -100% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .flicker {
+            animation: flicker 8s infinite;
+        }
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+            20%, 22%, 24%, 55% { opacity: 0.7; }
+        }
+        .pulse-warning {
+            animation: pulseWarning 3s infinite;
+        }
+        @keyframes pulseWarning {
+            0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.2); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+    <!-- Animated Grid Background -->
+    <div class="animated-grid-background"></div>
+
+    <!-- Navigation Bar Placeholder -->
+    <nav id="navbar" class="sticky top-0 z-50"></nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow w-full relative z-10 p-4">
+        <h1 class="text-3xl md:text-4xl font-bold text-teal-300 text-center pulse scanline">Timetable Slot Manager</h1>
+        
+        <div class="disclaimer bg-red-900/20 border border-red-500 text-red-300 p-4 rounded-lg max-w-2xl mx-auto mt-6 text-center text-sm pulse-warning" role="alert">
+            ⚠️ <strong>DISCLAIMER:</strong> This is a simulation tool only, not affiliated with any college's official FFCS system. Use this to help plan your slot selection, but always verify with official college systems.
+        </div>
+
+        <div class="data-actions flex justify-center gap-4 mt-6">
+            <button id="exportBtn" class="glow-button px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-all text-sm">EXPORT DATA</button>
+            <label for="importFile" class="glow-button px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-all text-sm cursor-pointer">IMPORT DATA</label>
+            <input type="file" id="importFile" class="file-input hidden" accept=".json">
+        </div>
+
+        <div class="control-panel grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6 bg-gray-900/70 p-6 rounded-lg border border-teal-500 shadow-2xl backdrop-blur-sm">
+            <div class="input-group flex flex-col">
+                <label for="slotCode" class="text-sm text-teal-300 uppercase mb-2">Slot</label>
+                <input type="text" id="slotCode" placeholder="A11+A12" maxlength="15" class="p-2 rounded-lg border border-gray-700 bg-gray-800 text-teal-300 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500 input-glow">
+            </div>
+            <div class="input-group flex flex-col">
+                <label for="className" class="text-sm text-teal-300 uppercase mb-2">Class</label>
+                <input type="text" id="className" placeholder="Class Name" maxlength="30" class="p-2 rounded-lg border border-gray-700 bg-gray-800 text-teal-300 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500 input-glow">
+            </div>
+            <div class="input-group flex flex-col">
+                <label for="faculty" class="text-sm text-teal-300 uppercase mb-2">Faculty</label>
+                <input type="text" id="faculty" placeholder="Faculty" maxlength="20" class="p-2 rounded-lg border border-gray-700 bg-gray-800 text-teal-300 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500 input-glow">
+            </div>
+            <div class="input-group flex flex-col">
+                <label for="location" class="text-sm text-teal-300 uppercase mb-2">Location</label>
+                <input type="text" id="location" placeholder="Location" maxlength="8" class="p-2 rounded-lg border border-gray-700 bg-gray-800 text-teal-300 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500 input-glow">
+            </div>
+            <div class="actions flex gap-2 sm:col-span-2 lg:col-span-4 justify-center">
+                <button id="addBtn" class="glow-button px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-all text-sm">ADD SLOT</button>
+                <button id="resetBtn" class="glow-button px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-all text-sm">RESET ALL</button>
+            </div>
+            <div class="input-group flex flex-col sm:col-span-2">
+                <label for="removeSelect" class="text-sm text-teal-300 uppercase mb-2">Remove Slot</label>
+                <select id="removeSelect" class="p-2 rounded-lg border border-gray-700 bg-gray-800 text-teal-300 focus:outline-none focus:ring-2 focus:ring-teal-500 input-glow">
+                    <option value="">Select slot...</option>
+                </select>
+            </div>
+            <button id="removeBtn" class="glow-button px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-all text-sm sm:col-span-2 lg:col-span-4">REMOVE</button>
+            <div id="status" class="status text-center col-span-1 sm:col-span-2 lg:col-span-4" role="status"></div>
+        </div>
+
+        <h2 class="text-2xl font-bold text-teal-300 text-center mt-8">Timetable</h2>
+        <div class="overflow-x-auto">
+            <table id="timetable" class="w-full border-collapse text-sm bg-gray-900/70 border border-teal-500 shadow-2xl rounded-lg">
+                <thead>
+                    <tr>
+                        <th class="p-2 bg-teal-500/20 text-teal-300 uppercase">Day</th>
+                        <th class="p-2 bg-teal-500/20 text-teal-300 uppercase">08:30-10:00</th>
+                        <th class="p-2 bg-teal-500/20 text-teal-300 uppercase">10:05-11:35</th>
+                        <th class="p-2 bg-teal-500/20 text-teal-300 uppercase">11:40-13:10</th>
+                        <th class="p-2 bg-teal-500/20 text-teal-300 uppercase">Lunch</th>
+                        <th class="p-2 bg-teal-500/20 text-teal-300 uppercase">13:15-14:45</th>
+                        <th class="p-2 bg-teal-500/20 text-teal-300 uppercase">14:50-16:20</th>
+                        <th class="p-2 bg-teal-500/20 text-teal-300 uppercase">16:25-17:55</th>
+                        <th class="p-2 bg-teal-500/20 text-teal-300 uppercase">18:00-19:30</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-day="MON"><td class="p-2 font-bold text-teal-300 bg-teal-500/15">MON</td><td data-slot="A11" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">A11</span></div></td><td data-slot="B11" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">B11</span></div></td><td data-slot="C11" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">C11</span></div></td><td class="p-2 italic text-teal-300/80 bg-teal-900/10">Lunch</td><td data-slot="A21" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">A21</span></div></td><td data-slot="A14" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">A14</span></div></td><td data-slot="B21" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">B21</span></div></td><td data-slot="C21" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">C21</span></div></td></tr>
+                    <tr data-day="TUE"><td class="p-2 font-bold text-teal-300 bg-teal-500/15">TUE</td><td data-slot="D11" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">D11</span></div></td><td data-slot="E11" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">E11</span></div></td><td data-slot="F11" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">F11</span></div></td><td class="p-2 italic text-teal-300/80 bg-teal-900/10">Lunch</td><td data-slot="D21" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">D21</span></div></td><td data-slot="E14" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">E14</span></div></td><td data-slot="E21" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">E21</span></div></td><td data-slot="F21" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">F21</span></div></td></tr>
+                    <tr data-day="WED"><td class="p-2 font-bold text-teal-300 bg-teal-500/15">WED</td><td data-slot="A12" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">A12</span></div></td><td data-slot="B12" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">B12</span></div></td><td data-slot="C12" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">C12</span></div></td><td class="p-2 italic text-teal-300/80 bg-teal-900/10">Lunch</td><td data-slot="A22" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">A22</span></div></td><td data-slot="B14" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">B14</span></div></td><td data-slot="B22" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">B22</span></div></td><td data-slot="A24" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">A24</span></div></td></tr>
+                    <tr data-day="THU"><td class="p-2 font-bold text-teal-300 bg-teal-500/15">THU</td><td data-slot="D12" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">D12</span></div></td><td data-slot="E12" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">E12</span></div></td><td data-slot="F12" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">F12</span></div></td><td class="p-2 italic text-teal-300/80 bg-teal-900/10">Lunch</td><td data-slot="D22" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">D22</span></div></td><td data-slot="F14" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">F14</span></div></td><td data-slot="E22" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">E22</span></div></td><td data-slot="F22" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">F22</span></div></td></tr>
+                    <tr data-day="FRI"><td class="p-2 font-bold text-teal-300 bg-teal-500/15">FRI</td><td data-slot="A13" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">A13</span></div></td><td data-slot="B13" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">B13</span></div></td><td data-slot="C13" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">C13</span></div></td><td class="p-2 italic text-teal-300/80 bg-teal-900/10">Lunch</td><td data-slot="A23" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">A23</span></div></td><td data-slot="C14" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">C14</span></div></td><td data-slot="B23" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">B23</span></div></td><td data-slot="B24" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">B24</span></div></td></tr>
+                    <tr data-day="SAT"><td class="p-2 font-bold text-teal-300 bg-teal-500/15">SAT</td><td data-slot="D13" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">D13</span></div></td><td data-slot="E13" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">E13</span></div></td><td data-slot="F13" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">F13</span></div></td><td class="p-2 italic text-teal-300/80 bg-teal-900/10">Lunch</td><td data-slot="D23" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">D23</span></div></td><td data-slot="D14" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">D14</span></div></td><td data-slot="D24" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">D24</span></div></td><td data-slot="E23" class="p-2 border border-gray-700 flicker"><div class="slot-content"><span class="slot-code">E23</span></div></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="text-2xl font-bold text-teal-300 text-center mt-8">Booked Slot Details</h2>
+        <div class="overflow-x-auto">
+            <table id="detailsTable" class="w-full border-collapse text-sm bg-gray-900/70 border border-teal-500 shadow-2xl rounded-lg">
+                <thead>
+                    <tr>
+                        <th class="p-2 bg-teal-500/20 text-teal-300 uppercase">Slot(s)</th>
+                        <th class="p-2 bg-teal-500/20 text-teal-300 uppercase">Day(s)</th>
+                        <th class="p-2 bg-teal-500/20 text-teal-300 uppercase">Time(s)</th>
+                        <th class="p-2 bg-teal-500/20 text-teal-300 uppercase">Class</th>
+                        <th class="p-2 bg-teal-500/20 text-teal-300 uppercase">Faculty</th>
+                        <th class="p-2 bg-teal-500/20 text-teal-300 uppercase">Location</th>
+                    </tr>
+                </thead>
+                <tbody id="detailsBody">
+                    <tr><td colspan="6" class="p-2 text-gray-500 text-center">No slots booked yet.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Footer Placeholder -->
+    <footer id="footer" class="mt-auto"></footer>
+
+    <script>
+        // Load navbar.html
+        fetch('/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error loading navbar.html:', error);
+                document.getElementById('navbar').innerHTML = '<p class="text-red-500 text-center">Error loading navigation bar.</p>';
+            });
+
+        // Load footer.html
+        fetch('/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error loading footer.html:', error);
+                document.getElementById('footer').innerHTML = '<p class="text-red-500 text-center">Error loading footer.</p>';
+            });
+
+        // Timetable Slot Manager Logic
+        const slotDetails = {};
+        const addBtn = document.getElementById("addBtn");
+        const removeBtn = document.getElementById("removeBtn");
+        const resetBtn = document.getElementById("resetBtn");
+        const status = document.getElementById("status");
+        const slotInput = document.getElementById("slotCode");
+        const removeSelect = document.getElementById("removeSelect");
+        const classNameInput = document.getElementById("className");
+        const facultyInput = document.getElementById("faculty");
+        const locationInput = document.getElementById("location");
+        const detailsBody = document.getElementById("detailsBody");
+        const exportBtn = document.getElementById("exportBtn");
+        const importFile = document.getElementById("importFile");
+
+        function showStatus(msg, type) {
+            status.textContent = msg;
+            status.className = `status col-span-1 sm:col-span-2 lg:col-span-4 text-center p-2 rounded-lg ${type === 'success' ? 'text-green-300 bg-green-900/20 border border-green-500' : 'text-red-300 bg-red-900/20 border border-red-500'}`;
+            setTimeout(() => status.textContent = "", 4000);
+        }
+
+        function getSlotInfo(code) {
+            const cell = document.querySelector(`[data-slot="${code}"]`);
+            if (!cell) return null;
+            const day = cell.closest("tr").dataset.day;
+            const time = document.querySelector(`#timetable thead tr th:nth-child(${cell.cellIndex + 1})`).textContent;
+            return { cell, day, time };
+        }
+
+        function hasLunchConflict(newCodes) {
+            const lunch1 = "11:40-13:10";
+            const lunch2 = "13:15-14:45";
+            const dayTimeMap = {};
+
+            for (const entry of Object.values(slotDetails).flat()) {
+                if (!dayTimeMap[entry.day]) dayTimeMap[entry.day] = new Set();
+                dayTimeMap[entry.day].add(entry.time);
+            }
+
+            for (let code of newCodes) {
+                const info = getSlotInfo(code);
+                if (!info) continue;
+                if (!dayTimeMap[info.day]) dayTimeMap[info.day] = new Set();
+                dayTimeMap[info.day].add(info.time);
+            }
+
+            for (const times of Object.values(dayTimeMap)) {
+                if (times.has(lunch1) && times.has(lunch2)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        function updateSlotDisplay(cell, className, location) {
+            const slotContent = cell.querySelector('.slot-content') || document.createElement('div');
+            slotContent.className = 'slot-content flex flex-col justify-center min-h-[40px]';
+            slotContent.innerHTML = `
+                <span class="slot-code font-bold">${cell.dataset.slot}</span>
+                ${className ? `<span class="slot-class text-sm">${className}</span>` : ''}
+                ${location ? `<span class="slot-location text-xs text-teal-300/80">${location}</span>` : ''}
+            `;
+            if (!cell.querySelector('.slot-content')) {
+                cell.innerHTML = '';
+                cell.appendChild(slotContent);
+            }
+        }
+
+        function updateDetailsTable() {
+            detailsBody.innerHTML = "";
+            if (Object.keys(slotDetails).length === 0) {
+                detailsBody.innerHTML = `<tr><td colspan="6" class="p-2 text-gray-500 text-center">No slots booked yet.</td></tr>`;
+                return;
+            }
+            for (const [key, val] of Object.entries(slotDetails)) {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td class="p-2 border border-gray-700">${key}</td>
+                    <td class="p-2 border border-gray-700">${val.map(v => v.day).join(", ")}</td>
+                    <td class="p-2 border border-gray-700">${val.map(v => v.time).join(", ")}</td>
+                    <td class="p-2 border border-gray-700">${val[0].className}</td>
+                    <td class="p-2 border border-gray-700">${val[0].faculty}</td>
+                    <td class="p-2 border border-gray-700">${val[0].location}</td>
+                `;
+                detailsBody.appendChild(tr);
+            }
+        }
+
+        function updateDropdown() {
+            removeSelect.innerHTML = `<option value="">Select slot to remove</option>`;
+            Object.keys(slotDetails).forEach(code => {
+                const opt = document.createElement("option");
+                opt.value = code;
+                opt.textContent = code;
+                removeSelect.appendChild(opt);
+            });
+        }
+
+        function exportData() {
+            try {
+                const data = { slotDetails, timestamp: new Date().toISOString() };
+                const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `timetable-data-${new Date().toISOString().slice(0,10)}.json`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                showStatus("✅ Data exported successfully", "success");
+            } catch (err) {
+                console.error("Export error:", err);
+                showStatus("❌ Error exporting data", "error");
+            }
+        }
+
+        function importData(file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    if (!data.slotDetails) throw new Error("Invalid data format");
+                    Object.values(slotDetails).flat().forEach(s => {
+                        s.cell.classList.remove("highlight");
+                        updateSlotDisplay(s.cell);
+                    });
+                    Object.keys(slotDetails).forEach(k => delete slotDetails[k]);
+                    for (const [key, val] of Object.entries(data.slotDetails)) {
+                        slotDetails[key] = val;
+                        val.forEach(s => {
+                            s.cell = document.querySelector(`[data-slot="${s.code}"]`);
+                            if (s.cell) {
+                                s.cell.classList.add("highlight");
+                                updateSlotDisplay(s.cell, s.className, s.location);
+                            }
+                        });
+                    }
+                    updateDetailsTable();
+                    updateDropdown();
+                    showStatus("✅ Data imported successfully", "success");
+                } catch (err) {
+                    console.error("Import error:", err);
+                    showStatus("❌ Error importing data - invalid file", "error");
+                }
+            };
+            reader.onerror = function() {
+                showStatus("❌ Error reading file", "error");
+            };
+            reader.readAsText(file);
+        }
+
+        addBtn.addEventListener("click", () => {
+            const input = slotInput.value.trim().toUpperCase();
+            if (!input) return showStatus("Enter slot code(s)", "error");
+            const codes = input.split("+").map(s => s.trim());
+            const allValid = codes.every(code => /^[A-Z]\d{2}$/.test(code));
+            if (!allValid) return showStatus("Invalid slot code(s)", "error");
+            const className = classNameInput.value.trim();
+            const faculty = facultyInput.value.trim();
+            const location = locationInput.value.trim();
+            const validationErrors = [];
+            const details = [];
+
+            if (hasLunchConflict(codes)) {
+                validationErrors.push("Cannot book both 11:40-13:10 and 13:15-14:45 on same day");
+            }
+
+            for (let code of codes) {
+                if (Object.values(slotDetails).some(arr => arr.find(s => s.code === code))) {
+                    validationErrors.push(`Slot ${code} already booked`);
+                    continue;
+                }
+                const info = getSlotInfo(code);
+                if (!info) {
+                    validationErrors.push(`Slot ${code} not found`);
+                    continue;
+                }
+                info.code = code;
+                info.className = className;
+                info.faculty = faculty;
+                info.location = location;
+                details.push(info);
+            }
+
+            if (validationErrors.length > 0) {
+                return showStatus(`❌ ${validationErrors.join(", ")}`, "error");
+            }
+
+            for (const info of details) {
+                info.cell.classList.add("highlight");
+                updateSlotDisplay(info.cell, className, location);
+            }
+
+            slotDetails[input] = details;
+            updateDetailsTable();
+            updateDropdown();
+            showStatus("✅ Slot(s) added successfully", "success");
+            slotInput.value = classNameInput.value = facultyInput.value = locationInput.value = "";
+        });
+
+        removeBtn.addEventListener("click", () => {
+            const selected = removeSelect.value;
+            if (!selected) return showStatus("Select a slot to remove", "error");
+            slotDetails[selected].forEach(s => {
+                s.cell.classList.remove("highlight");
+                updateSlotDisplay(s.cell);
+            });
+            delete slotDetails[selected];
+            updateDetailsTable();
+            updateDropdown();
+            showStatus("🗑️ Slot removed successfully", "success");
+        });
+
+        resetBtn.addEventListener("click", () => {
+            Object.values(slotDetails).flat().forEach(s => {
+                s.cell.classList.remove("highlight");
+                updateSlotDisplay(s.cell);
+            });
+            Object.keys(slotDetails).forEach(k => delete slotDetails[k]);
+            updateDetailsTable();
+            updateDropdown();
+            showStatus("♻️ All slots cleared successfully", "success");
+        });
+
+        exportBtn.addEventListener("click", exportData);
+
+        importFile.addEventListener("change", (e) => {
+            if (e.target.files.length > 0) {
+                importData(e.target.files[0]);
+                e.target.value = '';
+            }
+        });
+
+        document.querySelectorAll('[data-slot]').forEach(cell => updateSlotDisplay(cell));
+    </script>
+</body>
+</html>

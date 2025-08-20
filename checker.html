@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .section {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        tr:hover {
+            background-color: #f0f0f0;
+        }
+        .rating-high {
+            color: green;
+            font-weight: bold;
+        }
+        .rating-medium {
+            color: orange;
+            font-weight: bold;
+        }
+        .rating-low {
+            color: red;
+            font-weight: bold;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select, textarea {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        .button-add {
+            background-color: #4CAF50;
+        }
+        .button-add:hover {
+            background-color: #45a049;
+        }
+        .button-delete {
+            background-color: #f44336;
+        }
+        .button-delete:hover {
+            background-color: #d32f2f;
+        }
+        .button-edit {
+            background-color: #2196F3;
+        }
+        .button-edit:hover {
+            background-color: #0b7dda;
+        }
+        .button-view {
+            background-color: #ff9800;
+        }
+        .button-view:hover {
+            background-color: #e68a00;
+        }
+        .button-export {
+            background-color: #9c27b0;
+        }
+        .button-export:hover {
+            background-color: #7b1fa2;
+        }
+        .button-import {
+            background-color: #607d8b;
+        }
+        .button-import:hover {
+            background-color: #455a64;
+        }
+        .button-search {
+            background-color: #3498db;
+        }
+        .button-search:hover {
+            background-color: #2980b9;
+        }
+        .button-refresh {
+            background-color: #009688;
+        }
+        .button-refresh:hover {
+            background-color: #00796b;
+        }
+        .button-login {
+            background-color: #2c3e50;
+        }
+        .button-login:hover {
+            background-color: #1a252f;
+        }
+        .hidden {
+            display: none;
+        }
+        .search-container {
+            margin-bottom: 15px;
+        }
+        .search-box {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        #nameInput {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        .found {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .not-found {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .match-list {
+            margin-top: 10px;
+        }
+        .match-item {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .status {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .status-loading {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status-error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .tab-container {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 10px 20px;
+            background: #ddd;
+            cursor: pointer;
+            border-radius: 5px 5px 0 0;
+            margin-right: 5px;
+        }
+        .tab.active {
+            background: white;
+            font-weight: bold;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .add-missing-form {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f0f8ff;
+            border-radius: 4px;
+        }
+        .login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .login-box {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .login-box h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+        .login-box input {
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+        }
+        .login-box button {
+            width: 100%;
+        }
+        .auth-status {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .admin-controls {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .admin-only {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        .quick-add-form {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            border: 1px solid #dee2e6;
+        }
+        .edit-name-input {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 5px;
+        }
+        .inline-edit-buttons {
+            display: flex;
+            gap: 5px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="loginOverlay" class="login-overlay">
+        <div class="login-box">
+            <h2>Admin Login</h2>
+            <form id="loginForm">
+                <label for="username">Username:</label>
+                <input type="text" id="username" required>
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+                
+                <button type="submit" class="button-login">Login</button>
+                <div id="authStatus" class="auth-status"></div>
+            </form>
+        </div>
+    </div>
+
+    <div id="appContent" class="hidden">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h1>Faculty Management System</h1>
+            <button onclick="logout()" class="button-delete">Logout</button>
+        </div>
+        
+        <div class="tab-container">
+            <div class="tab active" onclick="switchTab('ratingManager')">Rating Manager</div>
+            <div class="tab" onclick="switchTab('nameChecker')">Name Checker</div>
+        </div>
+        
+        <div id="ratingManager" class="tab-content active">
+            <div class="container">
+                <div class="section">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h2>Faculty List</h2>
+                        <button onclick="loadFacultyData()" class="button-refresh">Refresh Data</button>
+                    </div>
+                    <div class="search-container">
+                        <input type="text" id="searchInput" placeholder="Search faculty..." oninput="filterFaculty()">
+                    </div>
+                    <table id="facultyTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Rating</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="facultyTableBody">
+                            <!-- Faculty data will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="section">
+                    <h2>Faculty Form</h2>
+                    <form id="facultyForm">
+                        <input type="hidden" id="editIndex" value="-1">
+                        
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" required>
+                        
+                        <label for="rating">Rating:</label>
+                        <input type="number" id="rating" min="1" max="5" step="0.25" required>
+                        
+                        <label for="teaching">Teaching (1-5):</label>
+                        <input type="number" id="teaching" min="1" max="5" required>
+                        
+                        <label for="evaluation">Evaluation (1-5):</label>
+                        <input type="number" id="evaluation" min="1" max="5" required>
+                        
+                        <label for="behaviour">Behaviour (1-5):</label>
+                        <input type="number" id="behaviour" min="1" max="5" required>
+                        
+                        <label for="internals">Internals (1-5):</label>
+                        <input type="number" id="internals" min="1" max="5" required>
+                        
+                        <label for="classAverage">Class Average:</label>
+                        <select id="classAverage" required>
+                            <option value="High">High</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Low">Low</option>
+                        </select>
+                        
+                        <label for="finalRemark">Final Remark:</label>
+                        <select id="finalRemark" required>
+                            <option value="Highly Recommended🔥">Highly Recommended🔥</option>
+                            <option value="Moderately Recommended🙂">Moderately Recommended🙂</option>
+                            <option value="Not Recommended👎">Not Recommended👎</option>
+                        </select>
+                        
+                        <button type="submit" id="submitButton" class="button-add">Add Faculty</button>
+                        <button type="button" id="cancelButton" class="hidden" onclick="cancelEdit()">Cancel</button>
+                    </form>
+                    
+                    <div class="admin-controls">
+                        <h3>Data Management</h3>
+                        <button onclick="exportData()" class="button-export">Export to JSON</button>
+                        <button onclick="document.getElementById('fileInput').click()" class="button-import">Import from JSON</button>
+                        <input type="file" id="fileInput" accept=".json" style="display: none;" onchange="importData(this)">
+                        <button onclick="saveToServer()" class="button-refresh">Save to Server</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="nameChecker" class="tab-content">
+            <div class="container">
+                <div class="section">
+                    <h2>Faculty Name Checker</h2>
+                    <div id="status" class="status status-loading">Loading faculty data...</div>
+                    
+                    <div class="search-box">
+                        <input type="text" id="nameInput" placeholder="Paste faculty list here">
+                        <button id="searchButton" class="button-search">Check Names</button>
+                    </div>
+                    
+                    <div id="result"></div>
+                    
+                    <!-- Add form for missing faculty -->
+                    <div id="addMissingForm" class="add-missing-form hidden">
+                        <h3>Add Missing Faculty</h3>
+                        <form id="missingFacultyForm">
+                            <input type="hidden" id="missingFacultyName">
+                            <div class="form-group">
+                                <label for="missingName">Name:</label>
+                                <input type="text" id="missingName" required>
+                            </div>
+                            <label for="missingRating">Rating:</label>
+                            <input type="number" id="missingRating" min="1" max="5" step="0.25" required>
+                            
+                            <label for="missingTeaching">Teaching (1-5):</label>
+                            <input type="number" id="missingTeaching" min="1" max="5" required>
+                            
+                            <label for="missingEvaluation">Evaluation (1-5):</label>
+                            <input type="number" id="missingEvaluation" min="1" max="5" required>
+                            
+                            <label for="missingBehaviour">Behaviour (1-5):</label>
+                            <input type="number" id="missingBehaviour" min="1" max="5" required>
+                            
+                            <label for="missingInternals">Internals (1-5):</label>
+                            <input type="number" id="missingInternals" min="1" max="5" required>
+                            
+                            <label for="missingClassAverage">Class Average:</label>
+                            <select id="missingClassAverage" required>
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                            </select>
+                            
+                            <label for="missingFinalRemark">Final Remark:</label>
+                            <select id="missingFinalRemark" required>
+                                <option value="Highly Recommended🔥">Highly Recommended🔥</option>
+                                <option value="Moderately Recommended🙂">Moderately Recommended🙂</option>
+                                <option value="Not Recommended👎">Not Recommended👎</option>
+                            </select>
+                            
+                            <button type="submit" class="button-add">Add Faculty</button>
+                            <button type="button" onclick="cancelAddMissing()">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h2>Current Faculty List</h2>
+                        <button onclick="loadFacultyData()" class="button-refresh">Refresh Data</button>
+                    </div>
+                    <p>These are the faculty names currently loaded:</p>
+                    <div id="currentFacultyList" style="max-height: 400px; overflow-y: auto;">
+                        <!-- Current faculty list will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Authentication configuration
+        const ADMIN_CREDENTIALS = {
+            username: "admin",
+            password: "admin#123" // In a real app, use proper password hashing and storage
+        };
+        
+        // Data storage configuration
+        const STORAGE_KEY = 'facultyData';
+        const API_ENDPOINT = '/api/faculty'; // Change this to your actual API endpoint
+        
+        let isAuthenticated = false;
+        let facultyData = [];
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if there's a saved session
+            const savedSession = localStorage.getItem('facultyAuth');
+            if (savedSession) {
+                const session = JSON.parse(savedSession);
+                if (session.expires > Date.now()) {
+                    isAuthenticated = true;
+                    showAppContent();
+                    loadFacultyData();
+                } else {
+                    localStorage.removeItem('facultyAuth');
+                }
+            }
+            
+            // Set up login form
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                
+                if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+                    // Successful login
+                    isAuthenticated = true;
+                    
+                    // Save session (expires in 1 hour)
+                    const session = {
+                        expires: Date.now() + (60 * 60 * 1000)
+                    };
+                    localStorage.setItem('facultyAuth', JSON.stringify(session));
+                    
+                    showAppContent();
+                    loadFacultyData();
+                } else {
+                    document.getElementById('authStatus').textContent = "Invalid username or password";
+                    document.getElementById('authStatus').className = "auth-status status-error";
+                }
+            });
+            
+            // If not authenticated, show login overlay
+            if (!isAuthenticated) {
+                document.getElementById('loginOverlay').style.display = 'flex';
+            }
+            
+            // Set up other form submissions
+            document.getElementById('facultyForm').addEventListener('submit', handleFacultyFormSubmit);
+            document.getElementById('missingFacultyForm').addEventListener('submit', handleMissingFacultySubmit);
+            document.getElementById('searchButton').addEventListener('click', processInput);
+        });
+
+        function showAppContent() {
+            document.getElementById('loginOverlay').style.display = 'none';
+            document.getElementById('appContent').classList.remove('hidden');
+            updateAdminControls();
+        }
+
+        function logout() {
+            isAuthenticated = false;
+            localStorage.removeItem('facultyAuth');
+            document.getElementById('appContent').classList.add('hidden');
+            document.getElementById('loginOverlay').style.display = 'flex';
+            document.getElementById('loginForm').reset();
+            document.getElementById('authStatus').textContent = "";
+        }
+
+        function updateAdminControls() {
+            const adminControls = document.querySelectorAll('.admin-only, .admin-controls button, #facultyForm button, #missingFacultyForm button');
+            adminControls.forEach(control => {
+                if (isAuthenticated) {
+                    control.classList.remove('admin-only');
+                } else {
+                    control.classList.add('admin-only');
+                }
+            });
+        }
+
+        // Load faculty data
+        async function loadFacultyData() {
+            const statusElement = document.getElementById('status');
+            statusElement.textContent = "Loading faculty data...";
+            statusElement.className = "status status-loading";
+            
+            try {
+                // Try to load from server first
+                const response = await fetch(API_ENDPOINT);
+                if (response.ok) {
+                    facultyData = await response.json();
+                    statusElement.textContent = `Successfully loaded ${facultyData.length} faculty records from server`;
+                } else {
+                    // Fallback to localStorage if server fails
+                    const savedData = localStorage.getItem(STORAGE_KEY);
+                    if (savedData) {
+                        facultyData = JSON.parse(savedData);
+                        statusElement.textContent = `Loaded ${facultyData.length} faculty records from local storage`;
+                    } else {
+                        facultyData = [];
+                        statusElement.textContent = "No faculty data found. Start by adding faculty members.";
+                    }
+                }
+                
+                statusElement.className = "status status-success";
+                renderFacultyTable();
+                updateCurrentFacultyList();
+            } catch (error) {
+                statusElement.textContent = `Error loading data: ${error.message}`;
+                statusElement.className = "status status-error";
+                console.error('Error loading faculty data:', error);
+            }
+        }
+
+        // Save data to server
+        async function saveToServer() {
+            if (!isAuthenticated) {
+                alert("Please login to perform this action");
+                return;
+            }
+            
+            const statusElement = document.getElementById('status');
+            statusElement.textContent = "Saving data to server...";
+            statusElement.className = "status status-loading";
+            
+            try {
+                const response = await fetch(API_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(facultyData)
+                });
+                
+                if (response.ok) {
+                    statusElement.textContent = "Data successfully saved to server";
+                    statusElement.className = "status status-success";
+                } else {
+                    throw new Error('Server returned error status');
+                }
+            } catch (error) {
+                statusElement.textContent = `Error saving to server: ${error.message}`;
+                statusElement.className = "status status-error";
+                
+                // Fallback to localStorage
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(facultyData));
+                statusElement.textContent += " - Data saved to local storage as backup";
+            }
+        }
+
+        // Save data locally and to server if possible
+        function saveData() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(facultyData));
+            
+            if (isAuthenticated) {
+                saveToServer();
+            }
+        }
+
+        // Handle faculty form submission
+        function handleFacultyFormSubmit(e) {
+            e.preventDefault();
+            
+            if (!isAuthenticated) {
+                alert("Please login to perform this action");
+                return;
+            }
+            
+            const name = document.getElementById('name').value;
+            const rating = parseFloat(document.getElementById('rating').value);
+            const teaching = document.getElementById('teaching').value;
+            const evaluation = document.getElementById('evaluation').value;
+            const behaviour = document.getElementById('behaviour').value;
+            const internals = document.getElementById('internals').value;
+            const classAverage = document.getElementById('classAverage').value;
+            const finalRemark = document.getElementById('finalRemark').value;
+            
+            const review = `Teaching: ${teaching}, Evaluation: ${evaluation}, Behaviour: ${behaviour}, Internals: ${internals}, Class Average: ${classAverage}, Final Remark: ${finalRemark}`;
+            
+            const editIndex = parseInt(document.getElementById('editIndex').value);
+            
+            if (editIndex >= 0) {
+                // Update existing faculty - including name changes
+                facultyData[editIndex] = { name, rating, review };
+            } else {
+                // Add new faculty
+                facultyData.push({ name, rating, review });
+            }
+            
+            // Save data
+            saveData();
+            
+            // Reset form
+            this.reset();
+            document.getElementById('editIndex').value = "-1";
+            document.getElementById('submitButton').textContent = "Add Faculty";
+            document.getElementById('submitButton').className = "button-add";
+            document.getElementById('cancelButton').classList.add('hidden');
+            
+            // Refresh views
+            renderFacultyTable();
+            updateCurrentFacultyList();
+            
+            // Show success message
+            const statusElement = document.getElementById('status');
+            statusElement.textContent = `Faculty ${editIndex >= 0 ? 'updated' : 'added'} successfully`;
+            statusElement.className = "status status-success";
+        }
+
+        // Handle missing faculty form submission
+        function handleMissingFacultySubmit(e) {
+            e.preventDefault();
+            
+            if (!isAuthenticated) {
+                alert("Please login to perform this action");
+                return;
+            }
+            
+            const name = document.getElementById('missingName').value;
+            const rating = parseFloat(document.getElementById('missingRating').value);
+            const teaching = document.getElementById('missingTeaching').value;
+            const evaluation = document.getElementById('missingEvaluation').value;
+            const behaviour = document.getElementById('missingBehaviour').value;
+            const internals = document.getElementById('missingInternals').value;
+            const classAverage = document.getElementById('missingClassAverage').value;
+            const finalRemark = document.getElementById('missingFinalRemark').value;
+            
+            const review = `Teaching: ${teaching}, Evaluation: ${evaluation}, Behaviour: ${behaviour}, Internals: ${internals}, Class Average: ${classAverage}, Final Remark: ${finalRemark}`;
+            
+            // Add new faculty
+            facultyData.push({ name, rating, review });
+            
+            // Save data
+            saveData();
+            
+            // Reset form and hide it
+            document.getElementById('missingFacultyForm').reset();
+            document.getElementById('addMissingForm').classList.add('hidden');
+            
+            // Update views
+            renderFacultyTable();
+            updateCurrentFacultyList();
+            
+            // Show success message
+            const statusElement = document.getElementById('status');
+            statusElement.textContent = `Successfully added ${name} to faculty records`;
+            statusElement.className = "status status-success";
+            
+            // Re-process the input to update the results
+            processInput();
+        }
+
+        // Quick add faculty from search results
+        function quickAddFaculty(event, originalName) {
+            event.preventDefault();
+            
+            if (!isAuthenticated) {
+                alert("Please login to perform this action");
+                return;
+            }
+            
+            const rating = parseFloat(event.target.querySelector('#quickRating').value);
+            
+            // Add new faculty with default values
+            facultyData.push({
+                name: originalName,
+                rating: rating,
+                review: `Teaching: 3, Evaluation: 3, Behaviour: 3, Internals: 3, Class Average: Medium, Final Remark: Moderately Recommended🙂`
+            });
+            
+            // Save data
+            saveData();
+            
+            // Update views
+            renderFacultyTable();
+            updateCurrentFacultyList();
+            
+            // Show success message
+            const statusElement = document.getElementById('status');
+            statusElement.textContent = `Successfully added ${originalName} to faculty records`;
+            statusElement.className = "status status-success";
+            
+            // Remove the quick add form
+            event.target.parentElement.remove();
+            
+            // Re-process the input to update the results
+            processInput();
+        }
+
+        // Render faculty table
+        function renderFacultyTable() {
+            const tableBody = document.getElementById('facultyTableBody');
+            tableBody.innerHTML = '';
+            
+            if (facultyData.length === 0) {
+                const row = document.createElement('tr');
+                const cell = document.createElement('td');
+                cell.colSpan = 3;
+                cell.textContent = "No faculty data available. Please load or add faculty.";
+                cell.style.textAlign = 'center';
+                row.appendChild(cell);
+                tableBody.appendChild(row);
+                return;
+            }
+            
+            facultyData.forEach((faculty, index) => {
+                const row = document.createElement('tr');
+                
+                // Name cell
+                const nameCell = document.createElement('td');
+                nameCell.textContent = faculty.name;
+                row.appendChild(nameCell);
+                
+                // Rating cell with color coding
+                const ratingCell = document.createElement('td');
+                ratingCell.textContent = faculty.rating;
+                if (faculty.rating >= 4) {
+                    ratingCell.className = 'rating-high';
+                } else if (faculty.rating >= 3) {
+                    ratingCell.className = 'rating-medium';
+                } else {
+                    ratingCell.className = 'rating-low';
+                }
+                row.appendChild(ratingCell);
+                
+                // Actions cell
+                const actionsCell = document.createElement('td');
+                
+                const editButton = document.createElement('button');
+                editButton.textContent = 'Edit';
+                editButton.className = 'button-edit';
+                editButton.onclick = () => editFaculty(index);
+                actionsCell.appendChild(editButton);
+                
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.className = 'button-delete';
+                deleteButton.onclick = () => deleteFaculty(index);
+                actionsCell.appendChild(deleteButton);
+                
+                const viewButton = document.createElement('button');
+                viewButton.textContent = 'View';
+                viewButton.className = 'button-view';
+                viewButton.onclick = () => viewFaculty(index);
+                actionsCell.appendChild(viewButton);
+                
+                row.appendChild(actionsCell);
+                
+                tableBody.appendChild(row);
+            });
+            
+            updateAdminControls();
+        }
+
+        // Edit faculty
+        function editFaculty(index) {
+            if (!isAuthenticated) {
+                alert("Please login to perform this action");
+                return;
+            }
+            
+            const faculty = facultyData[index];
+            
+            // Parse the review string to extract values
+            const reviewParts = faculty.review.split(', ');
+            const teaching = reviewParts[0].split(': ')[1];
+            const evaluation = reviewParts[1].split(': ')[1];
+            const behaviour = reviewParts[2].split(': ')[1];
+            const internals = reviewParts[3].split(': ')[1];
+            const classAverage = reviewParts[4].split(': ')[1].trim();
+            const finalRemark = reviewParts[5].split(': ')[1].trim();
+            
+            // Fill the form
+            document.getElementById('name').value = faculty.name;
+            document.getElementById('rating').value = faculty.rating;
+            document.getElementById('teaching').value = teaching;
+            document.getElementById('evaluation').value = evaluation;
+            document.getElementById('behaviour').value = behaviour;
+            document.getElementById('internals').value = internals;
+            document.getElementById('classAverage').value = classAverage;
+            document.getElementById('finalRemark').value = finalRemark;
+            
+            // Set edit mode
+            document.getElementById('editIndex').value = index;
+            document.getElementById('submitButton').textContent = "Update Faculty";
+            document.getElementById('submitButton').className = "button-edit";
+            document.getElementById('cancelButton').classList.remove('hidden');
+        }
+
+        // Delete faculty
+        function deleteFaculty(index) {
+            if (!isAuthenticated) {
+                alert("Please login to perform this action");
+                return;
+            }
+            
+            if (confirm(`Are you sure you want to delete ${facultyData[index].name}?`)) {
+                facultyData.splice(index, 1);
+                saveData();
+                renderFacultyTable();
+                updateCurrentFacultyList();
+                document.getElementById('status').textContent = `Faculty deleted. ${facultyData.length} records remaining.`;
+                document.getElementById('status').className = "status status-success";
+            }
+        }
+
+        // View faculty details
+        function viewFaculty(index) {
+            const faculty = facultyData[index];
+            alert(`Name: ${faculty.name}\nRating: ${faculty.rating}\n\nReview Details:\n${faculty.review}`);
+        }
+
+        // Cancel edit
+        function cancelEdit() {
+            document.getElementById('facultyForm').reset();
+            document.getElementById('editIndex').value = "-1";
+            document.getElementById('submitButton').textContent = "Add Faculty";
+            document.getElementById('submitButton').className = "button-add";
+            document.getElementById('cancelButton').classList.add('hidden');
+        }
+
+        // Process input for name checking
+        function processInput() {
+            const input = document.getElementById('nameInput').value.trim();
+            if (!input) {
+                alert('Please paste faculty list');
+                return;
+            }
+
+            // Extract names from the input
+            const namePattern = /(Dr\.?[^\n]*?(?:Professor|Associate Professor)[^\n]*?)(?=\n|Dr\.?|$)/gi;
+            const extractedNames = [];
+            let match;
+            
+            while ((match = namePattern.exec(input)) !== null) {
+                extractedNames.push(match[1].trim());
+            }
+
+            if (extractedNames.length === 0) {
+                showResult('No faculty names found in the input', false);
+                return;
+            }
+
+            // Check each name against our data
+            const results = extractedNames.map(name => {
+                const normalizedInput = normalizeName(name);
+                const found = facultyData.some(faculty => {
+                    return normalizeName(faculty.name) === normalizedInput;
+                });
+                return { name, found };
+            });
+
+            displayResults(results);
+        }
+
+        function displayResults(results) {
+            const foundCount = results.filter(r => r.found).length;
+            const notFoundCount = results.length - foundCount;
+            
+            let html = `<div class="${foundCount === results.length ? 'found' : 'not-found'}">`;
+            html += `<strong>Results:</strong> ${foundCount} found, ${notFoundCount} not found</div>`;
+            
+            if (notFoundCount > 0) {
+                html += `<div class="match-list"><strong>Not Found:</strong>`;
+                results.filter(r => !r.found).forEach(r => {
+                    html += `<div class="match-item">
+                        <span>${r.name}</span>
+                        <button onclick="showQuickAddForm('${r.name.replace(/'/g, "\\'")}')" 
+                                class="button-add ${isAuthenticated ? '' : 'admin-only'}">
+                            Quick Add
+                        </button>
+                    </div>`;
+                });
+                html += `</div>`;
+            }
+            
+            document.getElementById('result').innerHTML = html;
+            updateAdminControls();
+        }
+
+        function showQuickAddForm(name) {
+            if (!isAuthenticated) {
+                alert("Please login to perform this action");
+                return;
+            }
+            
+            const html = `
+                <div class="quick-add-form">
+                    <h4>Quick Add: ${name}</h4>
+                    <form onsubmit="quickAddFaculty(event, '${name.replace(/'/g, "\\'")}')">
+                        <label for="quickRating">Rating:</label>
+                        <input type="number" id="quickRating" min="1" max="5" step="0.25" value="3" required>
+                        <div class="inline-edit-buttons">
+                            <button type="submit" class="button-add">Add</button>
+                            <button type="button" onclick="this.parentElement.parentElement.remove()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            `;
+            
+            document.getElementById('result').insertAdjacentHTML('beforeend', html);
+        }
+
+        function cancelAddMissing() {
+            document.getElementById('missingFacultyForm').reset();
+            document.getElementById('addMissingForm').classList.add('hidden');
+        }
+
+        function normalizeName(name) {
+            return name.replace(/See Info$/, '')
+                       .replace(/\s+/g, ' ')
+                       .replace(/[.,]/g, '')
+                       .trim()
+                       .toLowerCase();
+        }
+
+        function showResult(message, isSuccess) {
+            document.getElementById('result').innerHTML = 
+                `<div class="${isSuccess ? 'found' : 'not-found'}">${message}</div>`;
+        }
+
+        function updateCurrentFacultyList() {
+            const listContainer = document.getElementById('currentFacultyList');
+            listContainer.innerHTML = '';
+            
+            if (facultyData.length === 0) {
+                listContainer.innerHTML = '<p>No faculty records found. Please load data.</p>';
+                return;
+            }
+            
+            const list = document.createElement('ul');
+            facultyData.forEach(faculty => {
+                const item = document.createElement('li');
+                item.textContent = faculty.name;
+                list.appendChild(item);
+            });
+            
+            listContainer.appendChild(list);
+        }
+
+        function filterFaculty() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const rows = document.getElementById('facultyTableBody').getElementsByTagName('tr');
+            
+            for (let row of rows) {
+                const name = row.cells[0].textContent.toLowerCase();
+                if (name.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            }
+        }
+
+        function exportData() {
+            if (!isAuthenticated) {
+                alert("Please login to perform this action");
+                return;
+            }
+            
+            const dataStr = JSON.stringify(facultyData, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            const exportFileDefaultName = 'faculty_data.json';
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+        }
+
+        function importData(input) {
+            if (!isAuthenticated) {
+                alert("Please login to perform this action");
+                return;
+            }
+            
+            const file = input.files[0];
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                try {
+                    const importedData = JSON.parse(e.target.result);
+                    if (Array.isArray(importedData)) {
+                        if (confirm(`This will replace current data with ${importedData.length} records. Continue?`)) {
+                            facultyData = importedData;
+                            saveData();
+                            renderFacultyTable();
+                            updateCurrentFacultyList();
+                            document.getElementById('status').textContent = `Successfully imported ${facultyData.length} faculty records`;
+                            document.getElementById('status').className = "status status-success";
+                        }
+                    } else {
+                        alert('Invalid data format. Expected an array of faculty objects.');
+                    }
+                } catch (error) {
+                    alert('Error parsing JSON file: ' + error.message);
+                }
+                input.value = '';
+            };
+            
+            reader.readAsText(file);
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            document.getElementById(tabId).classList.add('active');
+            
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
