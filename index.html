@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
-    <!-- Google tag (gtag.js) -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9530763960630835" crossorigin="anonymous"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CS583DXQC7"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
         gtag('js', new Date());
         gtag('config', 'G-CS583DXQC7');
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faculty Review & Rating</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Inter font for a clean, modern look -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -28,27 +30,30 @@
             flex-direction: column;
             min-height: 100vh;
         }
+
         .glow-button {
             box-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.3);
             transition: all 0.3s ease-in-out;
         }
+
         .glow-button:hover {
             box-shadow: 0 0 15px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.5);
             transform: translateY(-2px);
         }
+
         .input-glow:focus {
             outline: none;
             box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.5), 0 0 5px rgba(0, 255, 255, 0.3);
             border-color: #00ffff;
         }
+
         .animated-grid-background {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image:
-                linear-gradient(to right, rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+            background-image: linear-gradient(to right, rgba(0, 255, 255, 0.1) 1px, transparent 1px),
                 linear-gradient(to bottom, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
             background-size: 40px 40px;
             animation: moveGrid 60s linear infinite;
@@ -56,67 +61,92 @@
             pointer-events: none;
             z-index: -1;
         }
+
         @keyframes moveGrid {
-            from { background-position: 0 0; }
-            to { background-position: 4000px 4000px; }
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: 4000px 4000px;
+            }
         }
+
         .pulsing-border-inner {
             border: 2px solid #00ffff;
             box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
             animation: pulseBorder 2s infinite alternate;
         }
+
         @keyframes pulseBorder {
-            from { box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); }
-            to { box-shadow: 0 0 20px rgba(0, 255, 255, 0.9); }
+            from {
+                box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            }
+
+            to {
+                box-shadow: 0 0 20px rgba(0, 255, 255, 0.9);
+            }
         }
+
         .digital-text-shadow {
             text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
         }
+
         .star-rating .star {
             color: #4a5568;
             font-size: 1.8rem;
             transition: transform 0.2s, color 0.3s;
             cursor: default;
         }
+
         .star-rating .star.filled {
             color: #FFD700;
             text-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
             transform: scale(1.1);
         }
+
         .search-bar {
             transition: all 0.3s ease;
             color: #00ffff;
         }
+
         .search-bar:focus {
             transform: scale(1.02);
             box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
         }
+
         .dropdown-item {
             transition: all 0.2s ease;
             color: #E0E0E0;
             background-color: #1a202c;
         }
+
         .dropdown-item:hover {
             transform: translateX(5px);
             background: #2d3748;
             color: #00ffff;
         }
+
         .logo {
             filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.6));
         }
+
         .navbar-link {
             transition: color 0.3s, text-shadow 0.3s;
         }
+
         .navbar-link:hover {
             color: #00ffff;
             text-shadow: 0 0 8px rgba(0, 255, 255, 0.7);
         }
+
         .golden-glow-text {
             color: #FFD700;
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.6);
             font-size: 1.5rem;
             font-weight: bold;
         }
+
         .full-screen-section {
             min-height: calc(100vh - 80px);
             padding-top: 5rem;
@@ -131,22 +161,26 @@
             background-repeat: no-repeat;
             border-bottom: 1px solid rgba(0, 255, 255, 0.2);
         }
+
         #reviews {
             min-height: auto;
             padding: 0;
             background-color: transparent;
             border-bottom: none;
         }
+
         #reviews.full-screen-section {
             padding-top: 0;
             padding-bottom: 0;
         }
+
         .carousel-container {
             width: 100%;
             overflow: hidden;
             position: relative;
             border-radius: 0.75rem;
         }
+
         .carousel-track {
             display: flex;
             white-space: nowrap;
@@ -154,6 +188,7 @@
             will-change: transform;
             padding: 4rem 0;
         }
+
         .review-item {
             flex-shrink: 0;
             padding: 1rem;
@@ -170,49 +205,57 @@
             overflow-wrap: break-word;
             word-break: break-word;
         }
+
         .carousel-track .review-item:not(:last-child) {
             margin-right: 2.5rem;
         }
+
         @keyframes scroll-left {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
         }
+
         @media (max-width: 1023px) {
             .review-item {
                 width: calc(50% - 2rem);
                 margin-right: 2rem;
             }
+
             .carousel-track {
                 padding: 3rem 0;
             }
         }
+
         @media (max-width: 767px) {
             .review-item {
                 width: calc(90% - 2rem);
                 margin-right: 2rem;
             }
+
             .carousel-track {
                 padding: 2rem 0;
             }
         }
     </style>
 </head>
+
 <body class="flex flex-col min-h-screen">
-    <!-- Animated Grid Background -->
     <div class="animated-grid-background"></div>
 
-    <!-- Navigation Bar Placeholder -->
     <nav id="navbar" class="sticky top-0 z-50"></nav>
 
-    <!-- Main Content Placeholder -->
     <main id="main-content" class="flex-grow w-full relative z-10"></main>
 
-    <!-- Footer Placeholder -->
     <footer id="footer" class="mt-auto"></footer>
 
     <script>
         // Load navbar.html
-        fetch('/navbar.html')
+        fetch('navbar.html')
             .then(response => {
                 if (!response.ok) throw new Error('Failed to load navbar.html');
                 return response.text();
@@ -225,8 +268,8 @@
                 document.getElementById('navbar').innerHTML = '<p class="text-red-500 text-center">Error loading navigation bar.</p>';
             });
 
-        // Load content.html
-        fetch('/ffcs.html')
+        // Load ffcs.html
+        fetch('ffcs.html')
             .then(response => {
                 if (!response.ok) throw new Error('Failed to load ffcs.html');
                 return response.text();
@@ -240,14 +283,17 @@
                 if (hash) {
                     const target = document.querySelector(hash);
                     if (target) {
-                        target.scrollIntoView({ behavior: 'smooth' });
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
                     } else {
                         console.warn(`Element with ID ${hash} not found`);
-                        // Retry scrolling after a short delay to account for rendering
                         setTimeout(() => {
                             const retryTarget = document.querySelector(hash);
                             if (retryTarget) {
-                                retryTarget.scrollIntoView({ behavior: 'smooth' });
+                                retryTarget.scrollIntoView({
+                                    behavior: 'smooth'
+                                });
                             }
                         }, 100);
                     }
@@ -259,7 +305,7 @@
             });
 
         // Load footer.html
-        fetch('/footer.html')
+        fetch('footer.html')
             .then(response => {
                 if (!response.ok) throw new Error('Failed to load footer.html');
                 return response.text();
@@ -286,7 +332,7 @@
             let facultyData = [];
 
             // Fetch faculty.json
-            fetch('/faculty.json')
+            fetch('faculty.json')
                 .then(res => {
                     if (!res.ok) {
                         throw new Error(`HTTP error! status: ${res.status}`);
@@ -416,4 +462,5 @@
         }
     </script>
 </body>
+
 </html>
