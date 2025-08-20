@@ -254,7 +254,7 @@
 
     <footer id="footer" class="mt-auto"></footer>
 
-    <script>
+<script>
         // Load navbar.html
         fetch('navbar.html')
             .then(response => {
@@ -347,6 +347,7 @@
             const initialPrompt = document.getElementById('initialPrompt');
 
             let facultyData = [];
+            let searchIndex = {}; // New inverted index for faster lookups
 
             // Fetch faculty.json
             fetch('faculty.json')
@@ -358,6 +359,16 @@
                 })
                 .then(data => {
                     facultyData = data;
+                    // Build the inverted index
+                    facultyData.forEach(faculty => {
+                        const nameTokens = faculty.name.toLowerCase().split(/\s+/).filter(token => token.length > 0);
+                        nameTokens.forEach(token => {
+                            if (!searchIndex[token]) {
+                                searchIndex[token] = [];
+                            }
+                            searchIndex[token].push(faculty);
+                        });
+                    });
                     if (initialPrompt) {
                         initialPrompt.textContent = "Search for a faculty member to view their dossier.";
                         initialPrompt.classList.remove('hidden');
@@ -387,49 +398,55 @@
                     }
 
                     const queryTokens = query.split(/\s+/).filter(token => token.length > 0);
-                    let filteredResults = [];
+                    const matchedFacultySet = new Set();
+                    const matchedFaculty = [];
 
-                    if (queryTokens.length > 0) {
-                        filteredResults = facultyData.filter(faculty => {
-                            const name = faculty.name.toLowerCase();
-                            let matchScore = 0;
-
-                            for (const token of queryTokens) {
-                                // Check for direct substring match
-                                if (name.includes(token)) {
-                                    matchScore += 2; // Higher score for direct match
-                                } else {
-                                    // Check for fuzzy match for typos
-                                    const nameTokens = name.split(/\s+/);
-                                    for (const nameToken of nameTokens) {
-                                        const distance = levenshtein(token, nameToken);
-                                        if (distance <= 2) { // Allow up to 2 character edits
-                                            matchScore += 1; // Lower score for fuzzy match
-                                            break;
-                                        }
-                                    }
+                    // Use the inverted index for initial filtering
+                    queryTokens.forEach(token => {
+                        // Direct token match
+                        if (searchIndex[token]) {
+                            searchIndex[token].forEach(faculty => {
+                                if (!matchedFacultySet.has(faculty.name)) {
+                                    matchedFacultySet.add(faculty.name);
+                                    matchedFaculty.push({ ...faculty, score: 0 });
                                 }
-                            }
-                            return matchScore > 0;
-                        });
-                    }
-
-                    // Sort results by relevance (highest matchScore first, then alphabetically)
-                    filteredResults.sort((a, b) => {
-                        const aName = a.name.toLowerCase();
-                        const bName = b.name.toLowerCase();
-                        const aScore = queryTokens.reduce((score, token) => score + (aName.includes(token) ? 2 : 0) + (aName.split(/\s+/).some(t => levenshtein(token, t) <= 2) ? 1 : 0), 0);
-                        const bScore = queryTokens.reduce((score, token) => score + (bName.includes(token) ? 2 : 0) + (bName.split(/\s+/).some(t => levenshtein(token, t) <= 2) ? 1 : 0), 0);
-                        if (aScore !== bScore) {
-                            return bScore - aScore;
+                            });
                         }
-                        return aName.localeCompare(bName);
+                        // Fuzzy match for tokens
+                        for (const indexToken in searchIndex) {
+                            if (levenshtein(token, indexToken) <= 2) {
+                                searchIndex[indexToken].forEach(faculty => {
+                                    if (!matchedFacultySet.has(faculty.name)) {
+                                        matchedFacultySet.add(faculty.name);
+                                        matchedFaculty.push({ ...faculty, score: 0 });
+                                    }
+                                });
+                            }
+                        }
                     });
 
-                    if (filteredResults.length > 0) {
+                    // Re-calculate scores for sorting
+                    matchedFaculty.forEach(faculty => {
+                        const name = faculty.name.toLowerCase();
+                        faculty.score = queryTokens.reduce((score, token) => {
+                            let tokenScore = 0;
+                            if (name.includes(token)) {
+                                tokenScore += 2; // High score for substring match
+                            }
+                            if (name.split(/\s+/).some(nameToken => levenshtein(token, nameToken) <= 2)) {
+                                tokenScore += 1; // Lower score for fuzzy match
+                            }
+                            return score + tokenScore;
+                        }, 0);
+                    });
+
+                    // Sort results by relevance (highest score first) and then alphabetically
+                    matchedFaculty.sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));
+
+                    if (matchedFaculty.length > 0) {
                         dropdown.classList.remove('hidden');
                         if (initialPrompt) initialPrompt.classList.add('hidden');
-                        filteredResults.forEach(faculty => {
+                        matchedFaculty.forEach(faculty => {
                             const item = document.createElement('div');
                             item.classList.add('dropdown-item', 'p-3', 'cursor-pointer', 'text-white', 'hover:bg-gray-700', 'rounded-md');
                             item.innerHTML = `<span class="text-teal-300 font-semibold">${faculty.name}</span> <span class="text-gray-400">(${faculty.rating}⭐)</span>`;
