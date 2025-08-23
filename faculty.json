@@ -561,8 +561,8 @@
     },
     {
         "name": "Poonkuntaran",
-        "rating": 4.5,
-        "review": "Teaching: 4, Evaluation: 4.5, Behaviour: 4, Internals: 4.5, Class Average : Medium, Final Remark: Moderately  Recommended🔥"
+        "rating": 3,
+        "review": "Teaching: 4, Evaluation: 4.5, Behaviour: 2, Internals: 4.5, Class Average : Medium, Final Remark: Moderately  Recommended🙂"
     },
     {
         "name": "PR Bhuvaneshwai",
@@ -1007,7 +1007,7 @@
     {
         "name": "Sanay Naha",
         "rating": 5.0,
-        "review": "Teaching: 5, Evaluation: 5, Behaviour: 5, Internals: 4.5, Class Average : Medium, Final Remark: Go and GRAB this teacher. It is a Steal😍"
+        "review": "Teaching: 5, Evaluation: 5, Behaviour: 5, Internals: 4.5, Class Average : Medium, Final Remark: Highly Recommended🔥"
     },
     {
         "name": "Monika Sankat",
@@ -1016,18 +1016,13 @@
     },
     {
         "name": "Hemraj Lamkuche",
-        "rating": 5.0,
-        "review": "Teaching: 5, Evaluation: 5, Behaviour: 5, Internals: 4.5, Class Average : Medium, Final Remark: Go and GRAB this teacher. It is a Steal😍"
+        "rating": 3.9,
+        "review": "Teaching: 4, Evaluation: 5, Behaviour: 3, Internals: 3.5, Class Average : Medium, Final Remark: Highly Recommended🔥"
     },
     {
         "name": "Rizwan ur Rehman",
         "rating": 5.0,
-        "review": "Teaching: 5, Evaluation: 5, Behaviour: 5, Internals: 4, Class Average : Medium, Final Remark: Go and GRAB this teacher. It is a Steal😍"
-    },
-    {
-        "name": "Palas Mandal",
-        "rating": 4.0 ,
-        "review": "Teaching: 5, Evaluation: 4, Behaviour: 5, Internals: 3, Class Average : Medium, Final Remark: Highly Recommended🔥"
+        "review": "Teaching: 5, Evaluation: 5, Behaviour: 5, Internals: 4, Class Average : Medium, Final Remark: Highly Recommended🔥"
     },
     {
         "name": "Palas Mandal",
@@ -1043,6 +1038,21 @@
         "name": "Adnan",
         "rating": 3.0 ,
         "review": "Teaching: 3, Evaluation: 3.5, Behaviour: 2, Internals: 4, Class Average : Medium, Final Remark: Moderately Recommended🔥"
+    },
+    {
+        "name": "Saurabh Maurya",
+        "rating": 3.6 ,
+        "review": "Teaching: 3, Evaluation: 3.5, Behaviour: 2, Internals: 4, Class Average : Medium, Final Remark: Moderately Recommended🔥"
+    },
+    {
+        "name": "Rupesh Kumari",
+        "rating": 4.0 ,
+        "review": "Teaching: 5, Evaluation: 4, Behaviour: 4, Internals: 3, Class Average : Medium, Final Remark: Highly Recommended🔥"
+    },
+    {
+        "name": "Priya",
+        "rating": 3.75,
+        "review": "Teaching: 5, Evaluation: 3, Behaviour: 5, Internals: 2, Class Average : Medium, Final Remark:Moderately Recommended🔥"
     }
 
 
