@@ -242,6 +242,23 @@
                 padding: 2rem 0;
             }
         }
+        #navbar-default:not(.hidden) {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1rem;
+}
+
+[data-collapse-toggle="navbar-default"] {
+    z-index: 60;
+    width: 48px;
+    height: 48px;
+    padding: 8px;
+}
+
+[data-collapse-toggle="navbar-default"] svg {
+    fill: currentColor;
+}
     </style>
 </head>
 
@@ -255,293 +272,307 @@
     <footer id="footer" class="mt-auto"></footer>
 
 <script>
-        // Load navbar.html
-        fetch('navbar.html')
-            .then(response => {
-                if (!response.ok) throw new Error('Failed to load navbar.html');
-                return response.text();
-            })
-            .then(data => {
-                document.getElementById('navbar').innerHTML = data;
-            })
-            .catch(error => {
-                console.error('Error loading navbar:', error);
-                document.getElementById('navbar').innerHTML = '<p class="text-red-500 text-center">Error loading navigation bar.</p>';
-            });
+    // Load navbar.html
+    fetch('navbar.html')
+        .then(response => {
+            if (!response.ok) throw new Error('Failed to load navbar.html');
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById('navbar').innerHTML = data;
+            // Initialize toggle button after navbar is loaded
+            const toggleButton = document.querySelector('[data-collapse-toggle="navbar-default"]');
+            const navbarMenu = document.getElementById('navbar-default');
 
-        // Load ffcs.html
-        fetch('ffcs.html')
-            .then(response => {
-                if (!response.ok) throw new Error('Failed to load ffcs.html');
-                return response.text();
-            })
-            .then(data => {
-                document.getElementById('main-content').innerHTML = data;
-                // Initialize faculty search after content is loaded
-                initializeFacultySearch();
-                // Handle fragment navigation
-                const hash = window.location.hash;
-                if (hash) {
-                    const target = document.querySelector(hash);
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    } else {
-                        console.warn(`Element with ID ${hash} not found`);
-                        setTimeout(() => {
-                            const retryTarget = document.querySelector(hash);
-                            if (retryTarget) {
-                                retryTarget.scrollIntoView({
-                                    behavior: 'smooth'
-                                });
-                            }
-                        }, 100);
-                    }
-                }
-            })
-            .catch(error => {
-                console.error('Error loading ffcs.html:', error);
-                document.getElementById('main-content').innerHTML = '<p class="text-red-500 text-center">Error loading content.</p>';
-            });
-
-        // Load footer.html
-        fetch('footer.html')
-            .then(response => {
-                if (!response.ok) throw new Error('Failed to load footer.html');
-                return response.text();
-            })
-            .then(data => {
-                document.getElementById('footer').innerHTML = data;
-            })
-            .catch(error => {
-                console.error('Error loading footer:', error);
-                document.getElementById('footer').innerHTML = '<p class="text-red-500 text-center">Error loading footer.</p>';
-            });
-
-        // This function calculates the Levenshtein distance between two strings
-        function levenshtein(a, b) {
-            const matrix = [];
-            for (let i = 0; i <= b.length; i++) {
-                matrix[i] = [i];
+            if (toggleButton && navbarMenu) {
+                toggleButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    navbarMenu.classList.toggle('hidden');
+                    const isExpanded = navbarMenu.classList.contains('hidden') ? 'false' : 'true';
+                    toggleButton.setAttribute('aria-expanded', isExpanded);
+                });
+                toggleButton.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    navbarMenu.classList.toggle('hidden');
+                    const isExpanded = navbarMenu.classList.contains('hidden') ? 'false' : 'true';
+                    toggleButton.setAttribute('aria-expanded', isExpanded);
+                });
             }
-            for (let j = 0; j <= a.length; j++) {
-                matrix[0][j] = j;
-            }
-            for (let i = 1; i <= b.length; i++) {
-                for (let j = 1; j <= a.length; j++) {
-                    if (b.charAt(i - 1) === a.charAt(j - 1)) {
-                        matrix[i][j] = matrix[i - 1][j - 1];
-                    } else {
-                        matrix[i][j] = Math.min(matrix[i - 1][j - 1] + 1, Math.min(matrix[i][j - 1] + 1, matrix[i - 1][j] + 1));
-                    }
+        })
+        .catch(error => {
+            console.error('Error loading navbar:', error);
+            document.getElementById('navbar').innerHTML = '<p class="text-red-500 text-center">Error loading navigation bar.</p>';
+        });
+
+    // Load ffcs.html
+    fetch('ffcs.html')
+        .then(response => {
+            if (!response.ok) throw new Error('Failed to load ffcs.html');
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById('main-content').innerHTML = data;
+            // Initialize faculty search after content is loaded
+            initializeFacultySearch();
+            // Handle fragment navigation
+            const hash = window.location.hash;
+            if (hash) {
+                const target = document.querySelector(hash);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    console.warn(`Element with ID ${hash} not found`);
+                    setTimeout(() => {
+                        const retryTarget = document.querySelector(hash);
+                        if (retryTarget) {
+                            retryTarget.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }, 100);
                 }
             }
-            return matrix[b.length][a.length];
+        })
+        .catch(error => {
+            console.error('Error loading ffcs.html:', error);
+            document.getElementById('main-content').innerHTML = '<p class="text-red-500 text-center">Error loading content.</p>';
+        });
+
+    // Load footer.html
+    fetch('footer.html')
+        .then(response => {
+            if (!response.ok) throw new Error('Failed to load footer.html');
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById('footer').innerHTML = data;
+        })
+        .catch(error => {
+            console.error('Error loading footer:', error);
+            document.getElementById('footer').innerHTML = '<p class="text-red-500 text-center">Error loading footer.</p>';
+        });
+
+    // This function calculates the Levenshtein distance between two strings
+    function levenshtein(a, b) {
+        const matrix = [];
+        for (let i = 0; i <= b.length; i++) {
+            matrix[i] = [i];
         }
+        for (let j = 0; j <= a.length; j++) {
+            matrix[0][j] = j;
+        }
+        for (let i = 1; i <= b.length; i++) {
+            for (let j = 1; j <= a.length; j++) {
+                if (b.charAt(i - 1) === a.charAt(j - 1)) {
+                    matrix[i][j] = matrix[i - 1][j - 1];
+                } else {
+                    matrix[i][j] = Math.min(matrix[i - 1][j - 1] + 1, Math.min(matrix[i][j - 1] + 1, matrix[i - 1][j] + 1));
+                }
+            }
+        }
+        return matrix[b.length][a.length];
+    }
 
-        function initializeFacultySearch() {
-            const searchBar = document.getElementById('searchBar');
-            const dropdown = document.getElementById('dropdown');
-            const facultyDetailsSection = document.getElementById('facultyDetailsSection');
-            const initialPrompt = document.getElementById('initialPrompt');
+    function initializeFacultySearch() {
+        const searchBar = document.getElementById('searchBar');
+        const dropdown = document.getElementById('dropdown');
+        const facultyDetailsSection = document.getElementById('facultyDetailsSection');
+        const initialPrompt = document.getElementById('initialPrompt');
 
-            let facultyData = [];
-            let searchIndex = {}; // New inverted index for faster lookups
+        let facultyData = [];
+        let searchIndex = {}; // New inverted index for faster lookups
 
-            // Fetch faculty.json
-            fetch('faculty.json')
-                .then(res => {
-                    if (!res.ok) {
-                        throw new Error(`HTTP error! status: ${res.status}`);
-                    }
-                    return res.json();
-                })
-                .then(data => {
-                    facultyData = data;
-                    // Build the inverted index
-                    facultyData.forEach(faculty => {
-                        const nameTokens = faculty.name.toLowerCase().split(/\s+/).filter(token => token.length > 0);
-                        nameTokens.forEach(token => {
-                            if (!searchIndex[token]) {
-                                searchIndex[token] = [];
-                            }
-                            searchIndex[token].push(faculty);
-                        });
+        // Fetch faculty.json
+        fetch('faculty.json')
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+                return res.json();
+            })
+            .then(data => {
+                facultyData = data;
+                // Build the inverted index
+                facultyData.forEach(faculty => {
+                    const nameTokens = faculty.name.toLowerCase().split(/\s+/).filter(token => token.length > 0);
+                    nameTokens.forEach(token => {
+                        if (!searchIndex[token]) {
+                            searchIndex[token] = [];
+                        }
+                        searchIndex[token].push(faculty);
                     });
+                });
+                if (initialPrompt) {
+                    initialPrompt.textContent = "Search for a faculty member to view their dossier.";
+                    initialPrompt.classList.remove('hidden');
+                }
+            })
+            .catch(err => {
+                console.error('Error loading faculty data:', err);
+                if (initialPrompt) {
+                    initialPrompt.textContent = "Error: Failed to load faculty data. Please check your network connection.";
+                    initialPrompt.classList.remove('hidden');
+                }
+            });
+
+        if (searchBar) {
+            searchBar.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase().trim();
+                dropdown.innerHTML = '';
+                facultyDetailsSection.style.display = 'none';
+
+                if (query.length === 0) {
+                    dropdown.classList.add('hidden');
                     if (initialPrompt) {
                         initialPrompt.textContent = "Search for a faculty member to view their dossier.";
                         initialPrompt.classList.remove('hidden');
                     }
-                })
-                .catch(err => {
-                    console.error('Error loading faculty data:', err);
-                    if (initialPrompt) {
-                        initialPrompt.textContent = "Error: Failed to load faculty data. Please check your network connection.";
-                        initialPrompt.classList.remove('hidden');
+                    return;
+                }
+
+                const queryTokens = query.split(/\s+/).filter(token => token.length > 0);
+                const matchedFacultySet = new Set();
+                const matchedFaculty = [];
+
+                // Use the inverted index for initial filtering
+                queryTokens.forEach(token => {
+                    // Direct token match
+                    if (searchIndex[token]) {
+                        searchIndex[token].forEach(faculty => {
+                            if (!matchedFacultySet.has(faculty.name)) {
+                                matchedFacultySet.add(faculty.name);
+                                matchedFaculty.push({ ...faculty, score: 0 });
+                            }
+                        });
                     }
-                });
-
-            if (searchBar) {
-                searchBar.addEventListener('input', (e) => {
-                    const query = e.target.value.toLowerCase().trim();
-                    dropdown.innerHTML = '';
-                    facultyDetailsSection.style.display = 'none';
-
-                    if (query.length === 0) {
-                        dropdown.classList.add('hidden');
-                        if (initialPrompt) {
-                            initialPrompt.textContent = "Search for a faculty member to view their dossier.";
-                            initialPrompt.classList.remove('hidden');
-                        }
-                        return;
-                    }
-
-                    const queryTokens = query.split(/\s+/).filter(token => token.length > 0);
-                    const matchedFacultySet = new Set();
-                    const matchedFaculty = [];
-
-                    // Use the inverted index for initial filtering
-                    queryTokens.forEach(token => {
-                        // Direct token match
-                        if (searchIndex[token]) {
-                            searchIndex[token].forEach(faculty => {
+                    // Fuzzy match for tokens
+                    for (const indexToken in searchIndex) {
+                        if (levenshtein(token, indexToken) <= 2) {
+                            searchIndex[indexToken].forEach(faculty => {
                                 if (!matchedFacultySet.has(faculty.name)) {
                                     matchedFacultySet.add(faculty.name);
                                     matchedFaculty.push({ ...faculty, score: 0 });
                                 }
                             });
                         }
-                        // Fuzzy match for tokens
-                        for (const indexToken in searchIndex) {
-                            if (levenshtein(token, indexToken) <= 2) {
-                                searchIndex[indexToken].forEach(faculty => {
-                                    if (!matchedFacultySet.has(faculty.name)) {
-                                        matchedFacultySet.add(faculty.name);
-                                        matchedFaculty.push({ ...faculty, score: 0 });
-                                    }
-                                });
-                            }
-                        }
-                    });
+                    }
+                });
 
-                    // Re-calculate scores for sorting
+                // Re-calculate scores for sorting
+                matchedFaculty.forEach(faculty => {
+                    const name = faculty.name.toLowerCase();
+                    faculty.score = queryTokens.reduce((score, token) => {
+                        let tokenScore = 0;
+                        if (name.includes(token)) {
+                            tokenScore += 2; // High score for substring match
+                        }
+                        if (name.split(/\s+/).some(nameToken => levenshtein(token, nameToken) <= 2)) {
+                            tokenScore += 1; // Lower score for fuzzy match
+                        }
+                        return score + tokenScore;
+                    }, 0);
+                });
+
+                // Sort results by relevance (highest score first) and then alphabetically
+                matchedFaculty.sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));
+
+                if (matchedFaculty.length > 0) {
+                    dropdown.classList.remove('hidden');
+                    if (initialPrompt) initialPrompt.classList.add('hidden');
                     matchedFaculty.forEach(faculty => {
-                        const name = faculty.name.toLowerCase();
-                        faculty.score = queryTokens.reduce((score, token) => {
-                            let tokenScore = 0;
-                            if (name.includes(token)) {
-                                tokenScore += 2; // High score for substring match
-                            }
-                            if (name.split(/\s+/).some(nameToken => levenshtein(token, nameToken) <= 2)) {
-                                tokenScore += 1; // Lower score for fuzzy match
-                            }
-                            return score + tokenScore;
-                        }, 0);
-                    });
-
-                    // Sort results by relevance (highest score first) and then alphabetically
-                    matchedFaculty.sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));
-
-                    if (matchedFaculty.length > 0) {
-                        dropdown.classList.remove('hidden');
-                        if (initialPrompt) initialPrompt.classList.add('hidden');
-                        matchedFaculty.forEach(faculty => {
-                            const item = document.createElement('div');
-                            item.classList.add('dropdown-item', 'p-3', 'cursor-pointer', 'text-white', 'hover:bg-gray-700', 'rounded-md');
-                            item.innerHTML = `<span class="text-teal-300 font-semibold">${faculty.name}</span> <span class="text-gray-400">(${faculty.rating}⭐)</span>`;
-                            item.addEventListener('click', () => {
-                                searchBar.value = faculty.name;
-                                dropdown.classList.add('hidden');
-                                showFacultyDetails(faculty);
-                            });
-                            dropdown.appendChild(item);
+                        const item = document.createElement('div');
+                        item.classList.add('dropdown-item', 'p-3', 'cursor-pointer', 'text-white', 'hover:bg-gray-700', 'rounded-md');
+                        item.innerHTML = `<span class="text-teal-300 font-semibold">${faculty.name}</span> <span class="text-gray-400">(${faculty.rating}⭐)</span>`;
+                        item.addEventListener('click', () => {
+                            searchBar.value = faculty.name;
+                            dropdown.classList.add('hidden');
+                            showFacultyDetails(faculty);
                         });
-                    } else {
-                        dropdown.classList.add('hidden');
-                        if (initialPrompt) {
-                            initialPrompt.textContent = "No faculty found matching your search criteria.";
-                            initialPrompt.classList.remove('hidden');
-                        }
-                    }
-                });
-            }
-
-            if (document) {
-                document.addEventListener('click', (e) => {
-                    if (!searchBar.contains(e.target) && !dropdown.contains(e.target) && !facultyDetailsSection.contains(e.target)) {
-                        dropdown.classList.add('hidden');
-                    }
-                });
-            }
-
-            const renewSearchButton = document.getElementById('renewSearchButton');
-            if (renewSearchButton) {
-                renewSearchButton.addEventListener('click', () => {
-                    searchBar.value = '';
-                    dropdown.innerHTML = '';
+                        dropdown.appendChild(item);
+                    });
+                } else {
                     dropdown.classList.add('hidden');
-                    facultyDetailsSection.style.display = 'none';
                     if (initialPrompt) {
-                        initialPrompt.textContent = "Search for a faculty member to view their dossier.";
+                        initialPrompt.textContent = "No faculty found matching your search criteria.";
                         initialPrompt.classList.remove('hidden');
                     }
-                    searchBar.focus();
-                });
-            }
-
-            function showFacultyDetails(faculty) {
-                const facultyName = document.getElementById('facultyName');
-                const rating = document.getElementById('rating');
-                const reviewContent = document.getElementById('reviewContent');
-                const finalRemark = document.getElementById('finalRemark');
-
-                facultyName.textContent = faculty.name;
-                rating.innerHTML = generateStars(faculty.rating);
-                reviewContent.innerHTML = '';
-                finalRemark.textContent = '';
-                finalRemark.classList.remove('golden-glow-text');
-
-                const reviewParts = faculty.review.split(', ');
-                let finalRemarkValue = '';
-
-                reviewParts.forEach(part => {
-                    if (part.startsWith("Final Remark:")) {
-                        finalRemarkValue = part.replace("Final Remark:", "").trim();
-                    } else {
-                        const p = document.createElement('p');
-                        p.classList.add('mb-1', 'text-left');
-                        p.textContent = part + (part.endsWith('.') || part.endsWith('🙂') ? '' : '.');
-                        reviewContent.appendChild(p);
-                    }
-                });
-
-                if (finalRemarkValue) {
-                    finalRemark.textContent = finalRemarkValue;
-                    finalRemark.classList.add('golden-glow-text');
                 }
+            });
+        }
 
+        if (document) {
+            document.addEventListener('click', (e) => {
+                if (!searchBar.contains(e.target) && !dropdown.contains(e.target) && !facultyDetailsSection.contains(e.target)) {
+                    dropdown.classList.add('hidden');
+                }
+            });
+        }
+
+        const renewSearchButton = document.getElementById('renewSearchButton');
+        if (renewSearchButton) {
+            renewSearchButton.addEventListener('click', () => {
+                searchBar.value = '';
+                dropdown.innerHTML = '';
+                dropdown.classList.add('hidden');
+                facultyDetailsSection.style.display = 'none';
                 if (initialPrompt) {
-                    initialPrompt.classList.add('hidden');
+                    initialPrompt.textContent = "Search for a faculty member to view their dossier.";
+                    initialPrompt.classList.remove('hidden');
                 }
+                searchBar.focus();
+            });
+        }
 
-                facultyDetailsSection.style.display = 'block';
-            }
+        function showFacultyDetails(faculty) {
+            const facultyName = document.getElementById('facultyName');
+            const rating = document.getElementById('rating');
+            const reviewContent = document.getElementById('reviewContent');
+            const finalRemark = document.getElementById('finalRemark');
 
-            function generateStars(ratingValue) {
-                let starsHtml = '';
-                for (let i = 1; i <= 5; i++) {
-                    starsHtml += `<span class="star ${i <= Math.round(ratingValue) ? 'filled' : ''}">&#9733;</span>`;
+            facultyName.textContent = faculty.name;
+            rating.innerHTML = generateStars(faculty.rating);
+            reviewContent.innerHTML = '';
+            finalRemark.textContent = '';
+            finalRemark.classList.remove('golden-glow-text');
+
+            const reviewParts = faculty.review.split(', ');
+            let finalRemarkValue = '';
+
+            reviewParts.forEach(part => {
+                if (part.startsWith("Final Remark:")) {
+                    finalRemarkValue = part.replace("Final Remark:", "").trim();
+                } else {
+                    const p = document.createElement('p');
+                    p.classList.add('mb-1', 'text-left');
+                    p.textContent = part + (part.endsWith('.') || part.endsWith('🙂') ? '' : '.');
+                    reviewContent.appendChild(p);
                 }
-                return starsHtml;
+            });
+
+            if (finalRemarkValue) {
+                finalRemark.textContent = finalRemarkValue;
+                finalRemark.classList.add('golden-glow-text');
             }
 
             if (initialPrompt) {
-                initialPrompt.classList.remove('hidden');
-                facultyDetailsSection.style.display = 'none';
+                initialPrompt.classList.add('hidden');
             }
+
+            facultyDetailsSection.style.display = 'block';
         }
-    </script>
+
+        function generateStars(ratingValue) {
+            let starsHtml = '';
+            for (let i = 1; i <= 5; i++) {
+                starsHtml += `<span class="star ${i <= Math.round(ratingValue) ? 'filled' : ''}">&#9733;</span>`;
+            }
+            return starsHtml;
+        }
+
+        if (initialPrompt) {
+            initialPrompt.classList.remove('hidden');
+            facultyDetailsSection.style.display = 'none';
+        }
+    }
+</script>
 </body>
 
 </html>
