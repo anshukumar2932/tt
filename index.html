@@ -17,6 +17,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faculty Review & Rating</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -242,23 +243,46 @@
                 padding: 2rem 0;
             }
         }
+
         #navbar-default:not(.hidden) {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 1rem;
-}
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding: 1rem;
+        }
 
-[data-collapse-toggle="navbar-default"] {
-    z-index: 60;
-    width: 48px;
-    height: 48px;
-    padding: 8px;
-}
+        [data-collapse-toggle="navbar-default"] {
+            z-index: 60;
+            width: 48px;
+            height: 48px;
+            padding: 8px;
+        }
 
-[data-collapse-toggle="navbar-default"] svg {
-    fill: currentColor;
-}
+        [data-collapse-toggle="navbar-default"] svg {
+            fill: currentColor;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .hover:shadow-teal-500/50:hover {
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        }
+
+        .transition-shadow {
+            transition: box-shadow 0.3s ease;
+        }
     </style>
 </head>
 
@@ -271,16 +295,104 @@
 
     <footer id="footer" class="mt-auto"></footer>
 
-<script>
-    // Load navbar.html
-    fetch('navbar.html')
-        .then(response => {
-            if (!response.ok) throw new Error('Failed to load navbar.html');
-            return response.text();
-        })
-        .then(data => {
-            document.getElementById('navbar').innerHTML = data;
-            // Initialize toggle button after navbar is loaded
+    <script>
+        // Load navbar.html
+        fetch('navbar.html')
+            .then(response => {
+                if (!response.ok) throw new Error('Failed to load navbar.html');
+                return response.text();
+            })
+            .then(data => {
+                const navbar = document.getElementById('navbar');
+                if (navbar) {
+                    navbar.innerHTML = data;
+                    initializeNavbarToggle();
+                } else {
+                    console.error('Navbar element not found');
+                }
+            })
+            .catch(error => {
+                console.error('Error loading navbar:', error);
+                const navbar = document.getElementById('navbar');
+                if (navbar) {
+                    navbar.innerHTML = '<p class="text-red-500 text-center">Error loading navigation bar.</p>';
+                }
+            });
+
+        // Load ffcs.html
+        fetch('ffcs.html')
+            .then(response => {
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                return response.text();
+            })
+            .then(data => {
+                const mainContent = document.getElementById('main-content');
+                if (mainContent) {
+                    mainContent.innerHTML = data;
+                    console.log('ffcs.html loaded successfully');
+                    // Add comparison section dynamically
+                    const comparisonSection = document.createElement('div');
+                    comparisonSection.id = 'comparisonSection';
+                    comparisonSection.className = 'mt-8 hidden';
+                    comparisonSection.innerHTML = `
+                        <div class="container mx-auto px-4">
+                            <h3 class="text-2xl font-bold mb-4 text-teal-300">Compare Faculty</h3>
+                            <div class="flex flex-col md:flex-row gap-4">
+                                <div class="w-full md:w-1/2">
+                                    <input id="compareSearchBar" type="text" placeholder="Search for faculty to compare..."
+                                        class="w-full p-3 mb-2 rounded-lg bg-gray-800 text-white input-glow search-bar">
+                                    <div id="compareDropdown" class="hidden absolute w-full max-h-60 overflow-y-auto bg-gray-800 rounded-lg shadow-lg z-20"></div>
+                                </div>
+                                <div id="selectedFacultyList" class="w-full md:w-1/2 flex flex-wrap gap-2"></div>
+                            </div>
+                            <div id="comparisonResults" class="hidden mt-4"></div>
+                            <button id="clearComparisonButton" class="mt-4 bg-teal-500 text-white px-4 py-2 rounded-lg glow-button">
+                                Clear Comparison
+                            </button>
+                        </div>
+                    `;
+                    const facultyDetailsSection = document.getElementById('facultyDetailsSection');
+                    if (facultyDetailsSection && facultyDetailsSection.parentNode) {
+                        facultyDetailsSection.parentNode.insertBefore(comparisonSection, facultyDetailsSection.nextSibling);
+                    }
+                    initializeFacultySearch();
+                    handleFragmentNavigation();
+                } else {
+                    console.error('Main content element not found');
+                }
+            })
+            .catch(error => {
+                console.error('Error loading ffcs.html:', error);
+                const mainContent = document.getElementById('main-content');
+                if (mainContent) {
+                    mainContent.innerHTML = '<p class="text-red-500 text-center">Error loading content. ffcs.html</p>';
+                }
+            });
+
+        // Load footer.html
+        fetch('footer.html')
+            .then(response => {
+                if (!response.ok) throw new Error('Failed to load footer.html');
+                return response.text();
+            })
+            .then(data => {
+                const footer = document.getElementById('footer');
+                if (footer) {
+                    footer.innerHTML = data;
+                } else {
+                    console.error('Footer element not found');
+                }
+            })
+            .catch(error => {
+                console.error('Error loading footer:', error);
+                const footer = document.getElementById('footer');
+                if (footer) {
+                    footer.innerHTML = '<p class="text-red-500 text-center">Error loading footer.</p>';
+                }
+            });
+
+        // Initialize navbar toggle functionality
+        function initializeNavbarToggle() {
             const toggleButton = document.querySelector('[data-collapse-toggle="navbar-default"]');
             const navbarMenu = document.getElementById('navbar-default');
 
@@ -288,153 +400,109 @@
                 toggleButton.addEventListener('click', (e) => {
                     e.preventDefault();
                     navbarMenu.classList.toggle('hidden');
-                    const isExpanded = navbarMenu.classList.contains('hidden') ? 'false' : 'true';
-                    toggleButton.setAttribute('aria-expanded', isExpanded);
+                    toggleButton.setAttribute('aria-expanded', !navbarMenu.classList.contains('hidden'));
                 });
                 toggleButton.addEventListener('touchstart', (e) => {
                     e.preventDefault();
                     navbarMenu.classList.toggle('hidden');
-                    const isExpanded = navbarMenu.classList.contains('hidden') ? 'false' : 'true';
-                    toggleButton.setAttribute('aria-expanded', isExpanded);
+                    toggleButton.setAttribute('aria-expanded', !navbarMenu.classList.contains('hidden'));
                 });
+            } else {
+                console.warn('Navbar toggle or menu not found');
             }
-        })
-        .catch(error => {
-            console.error('Error loading navbar:', error);
-            document.getElementById('navbar').innerHTML = '<p class="text-red-500 text-center">Error loading navigation bar.</p>';
-        });
+        }
 
-    // Load ffcs.html
-    fetch('ffcs.html')
-        .then(response => {
-            if (!response.ok) throw new Error('Failed to load ffcs.html');
-            return response.text();
-        })
-        .then(data => {
-            document.getElementById('main-content').innerHTML = data;
-            // Initialize faculty search after content is loaded
-            initializeFacultySearch();
-            // Handle fragment navigation
-            const hash = window.location.hash;
-            if (hash) {
-                const target = document.querySelector(hash);
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    console.warn(`Element with ID ${hash} not found`);
-                    setTimeout(() => {
-                        const retryTarget = document.querySelector(hash);
-                        if (retryTarget) {
-                            retryTarget.scrollIntoView({ behavior: 'smooth' });
+        // Levenshtein distance function for fuzzy matching
+        function levenshtein(a, b) {
+            const matrix = Array(b.length + 1).fill().map(() => Array(a.length + 1).fill(0));
+            for (let i = 0; i <= b.length; i++) matrix[i][0] = i;
+            for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+            for (let i = 1; i <= b.length; i++) {
+                for (let j = 1; j <= a.length; j++) {
+                    const cost = b[i - 1] === a[j - 1] ? 0 : 1;
+                    matrix[i][j] = Math.min(
+                        matrix[i - 1][j - 1] + cost,
+                        matrix[i][j - 1] + 1,
+                        matrix[i - 1][j] + 1
+                    );
+                }
+            }
+            return matrix[b.length][a.length];
+        }
+
+        // Main search initialization
+        function initializeFacultySearch() {
+            const searchBar = document.getElementById('searchBar');
+            const dropdown = document.getElementById('dropdown');
+            const facultyDetailsSection = document.getElementById('facultyDetailsSection');
+            const initialPrompt = document.getElementById('initialPrompt');
+            const compareSearchBar = document.getElementById('compareSearchBar');
+            const compareDropdown = document.getElementById('compareDropdown');
+            const comparisonResults = document.getElementById('comparisonResults');
+            const selectedFacultyList = document.getElementById('selectedFacultyList');
+            const clearComparisonButton = document.getElementById('clearComparisonButton');
+
+            if (!searchBar || !dropdown || !facultyDetailsSection || !compareSearchBar || !compareDropdown || !comparisonResults || !selectedFacultyList) {
+                console.error('Required DOM elements not found');
+                return;
+            }
+
+            let facultyData = [];
+            let searchIndex = {};
+            let selectedFaculty = null;
+            let comparedFaculties = [];
+
+            // Load faculty data
+            fetch('faculty.json')
+                .then(res => {
+                    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+                    return res.json();
+                })
+                .then(data => {
+                    facultyData = data;
+                    facultyData.forEach(faculty => {
+                        if (faculty.name) {
+                            const nameTokens = faculty.name.toLowerCase().split(/\s+/).filter(token => token);
+                            nameTokens.forEach(token => {
+                                searchIndex[token] = searchIndex[token] || [];
+                                searchIndex[token].push(faculty);
+                            });
                         }
-                    }, 100);
-                }
-            }
-        })
-        .catch(error => {
-            console.error('Error loading ffcs.html:', error);
-            document.getElementById('main-content').innerHTML = '<p class="text-red-500 text-center">Error loading content.</p>';
-        });
-
-    // Load footer.html
-    fetch('footer.html')
-        .then(response => {
-            if (!response.ok) throw new Error('Failed to load footer.html');
-            return response.text();
-        })
-        .then(data => {
-            document.getElementById('footer').innerHTML = data;
-        })
-        .catch(error => {
-            console.error('Error loading footer:', error);
-            document.getElementById('footer').innerHTML = '<p class="text-red-500 text-center">Error loading footer.</p>';
-        });
-
-    // This function calculates the Levenshtein distance between two strings
-    function levenshtein(a, b) {
-        const matrix = [];
-        for (let i = 0; i <= b.length; i++) {
-            matrix[i] = [i];
-        }
-        for (let j = 0; j <= a.length; j++) {
-            matrix[0][j] = j;
-        }
-        for (let i = 1; i <= b.length; i++) {
-            for (let j = 1; j <= a.length; j++) {
-                if (b.charAt(i - 1) === a.charAt(j - 1)) {
-                    matrix[i][j] = matrix[i - 1][j - 1];
-                } else {
-                    matrix[i][j] = Math.min(matrix[i - 1][j - 1] + 1, Math.min(matrix[i][j - 1] + 1, matrix[i - 1][j] + 1));
-                }
-            }
-        }
-        return matrix[b.length][a.length];
-    }
-
-    function initializeFacultySearch() {
-        const searchBar = document.getElementById('searchBar');
-        const dropdown = document.getElementById('dropdown');
-        const facultyDetailsSection = document.getElementById('facultyDetailsSection');
-        const initialPrompt = document.getElementById('initialPrompt');
-
-        let facultyData = [];
-        let searchIndex = {}; // New inverted index for faster lookups
-
-        // Fetch faculty.json
-        fetch('faculty.json')
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error(`HTTP error! status: ${res.status}`);
-                }
-                return res.json();
-            })
-            .then(data => {
-                facultyData = data;
-                // Build the inverted index
-                facultyData.forEach(faculty => {
-                    const nameTokens = faculty.name.toLowerCase().split(/\s+/).filter(token => token.length > 0);
-                    nameTokens.forEach(token => {
-                        if (!searchIndex[token]) {
-                            searchIndex[token] = [];
-                        }
-                        searchIndex[token].push(faculty);
                     });
+                    if (initialPrompt) {
+                        initialPrompt.textContent = 'Search for a faculty member to view their dossier.';
+                        initialPrompt.classList.remove('hidden');
+                    }
+                    console.log('Faculty data loaded:', facultyData);
+                })
+                .catch(error => {
+                    console.error('Error loading faculty data:', error);
+                    if (initialPrompt) {
+                        initialPrompt.textContent = 'Error: Failed to load faculty data. Please try again later.';
+                        initialPrompt.classList.remove('hidden');
+                    }
                 });
-                if (initialPrompt) {
-                    initialPrompt.textContent = "Search for a faculty member to view their dossier.";
-                    initialPrompt.classList.remove('hidden');
-                }
-            })
-            .catch(err => {
-                console.error('Error loading faculty data:', err);
-                if (initialPrompt) {
-                    initialPrompt.textContent = "Error: Failed to load faculty data. Please check your network connection.";
-                    initialPrompt.classList.remove('hidden');
-                }
-            });
 
-        if (searchBar) {
+            // Main search bar input handler
             searchBar.addEventListener('input', (e) => {
                 const query = e.target.value.toLowerCase().trim();
                 dropdown.innerHTML = '';
-                facultyDetailsSection.style.display = 'none';
+                dropdown.classList.add('hidden');
+                facultyDetailsSection.classList.add('hidden');
 
                 if (query.length === 0) {
-                    dropdown.classList.add('hidden');
                     if (initialPrompt) {
-                        initialPrompt.textContent = "Search for a faculty member to view their dossier.";
+                        initialPrompt.textContent = 'Search for a faculty member to view their dossier.';
                         initialPrompt.classList.remove('hidden');
                     }
                     return;
                 }
 
-                const queryTokens = query.split(/\s+/).filter(token => token.length > 0);
+                const queryTokens = query.split(/\s+/).filter(token => token);
                 const matchedFacultySet = new Set();
                 const matchedFaculty = [];
 
-                // Use the inverted index for initial filtering
                 queryTokens.forEach(token => {
-                    // Direct token match
                     if (searchIndex[token]) {
                         searchIndex[token].forEach(faculty => {
                             if (!matchedFacultySet.has(faculty.name)) {
@@ -443,8 +511,7 @@
                             }
                         });
                     }
-                    // Fuzzy match for tokens
-                    for (const indexToken in searchIndex) {
+                    Object.keys(searchIndex).forEach(indexToken => {
                         if (levenshtein(token, indexToken) <= 2) {
                             searchIndex[indexToken].forEach(faculty => {
                                 if (!matchedFacultySet.has(faculty.name)) {
@@ -453,25 +520,20 @@
                                 }
                             });
                         }
-                    }
+                    });
                 });
 
-                // Re-calculate scores for sorting
                 matchedFaculty.forEach(faculty => {
                     const name = faculty.name.toLowerCase();
                     faculty.score = queryTokens.reduce((score, token) => {
-                        let tokenScore = 0;
-                        if (name.includes(token)) {
-                            tokenScore += 2; // High score for substring match
-                        }
-                        if (name.split(/\s+/).some(nameToken => levenshtein(token, nameToken) <= 2)) {
-                            tokenScore += 1; // Lower score for fuzzy match
+                        let tokenScore = name.includes(token) ? 2 : 0;
+                        if (!tokenScore && name.split(/\s+/).some(nameToken => levenshtein(token, nameToken) <= 2)) {
+                            tokenScore += 1;
                         }
                         return score + tokenScore;
                     }, 0);
                 });
 
-                // Sort results by relevance (highest score first) and then alphabetically
                 matchedFaculty.sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));
 
                 if (matchedFaculty.length > 0) {
@@ -479,100 +541,386 @@
                     if (initialPrompt) initialPrompt.classList.add('hidden');
                     matchedFaculty.forEach(faculty => {
                         const item = document.createElement('div');
-                        item.classList.add('dropdown-item', 'p-3', 'cursor-pointer', 'text-white', 'hover:bg-gray-700', 'rounded-md');
-                        item.innerHTML = `<span class="text-teal-300 font-semibold">${faculty.name}</span> <span class="text-gray-400">(${faculty.rating}⭐)</span>`;
+                        item.classList.add('dropdown-item', 'p-3', 'cursor-pointer', 'rounded-md');
+                        item.innerHTML = `<span class="text-teal-300 font-semibold">${faculty.name}</span>`;
                         item.addEventListener('click', () => {
                             searchBar.value = faculty.name;
                             dropdown.classList.add('hidden');
                             showFacultyDetails(faculty);
+                            console.log('Selected faculty:', faculty);
                         });
                         dropdown.appendChild(item);
                     });
                 } else {
-                    dropdown.classList.add('hidden');
                     if (initialPrompt) {
-                        initialPrompt.textContent = "No faculty found matching your search criteria.";
+                        initialPrompt.textContent = 'No faculty found matching your search criteria.';
                         initialPrompt.classList.remove('hidden');
                     }
                 }
             });
-        }
 
-        if (document) {
+            // Search button handler
+            const searchButton = document.querySelector('#searchBar + button');
+            if (searchButton) {
+                searchButton.addEventListener('click', () => {
+                    const query = searchBar.value.toLowerCase().trim();
+                    if (query && facultyData.length > 0) {
+                        const matchedFaculty = facultyData.find(f => f.name.toLowerCase() === query);
+                        if (matchedFaculty) {
+                            showFacultyDetails(matchedFaculty);
+                            console.log('Searched faculty:', matchedFaculty);
+                        } else {
+                            if (initialPrompt) {
+                                initialPrompt.textContent = 'No faculty found matching your search criteria.';
+                                initialPrompt.classList.remove('hidden');
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Hide dropdown on outside click
             document.addEventListener('click', (e) => {
-                if (!searchBar.contains(e.target) && !dropdown.contains(e.target) && !facultyDetailsSection.contains(e.target)) {
+                if (!searchBar.contains(e.target) && !dropdown.contains(e.target)) {
                     dropdown.classList.add('hidden');
                 }
-            });
-        }
-
-        const renewSearchButton = document.getElementById('renewSearchButton');
-        if (renewSearchButton) {
-            renewSearchButton.addEventListener('click', () => {
-                searchBar.value = '';
-                dropdown.innerHTML = '';
-                dropdown.classList.add('hidden');
-                facultyDetailsSection.style.display = 'none';
-                if (initialPrompt) {
-                    initialPrompt.textContent = "Search for a faculty member to view their dossier.";
-                    initialPrompt.classList.remove('hidden');
+                if (!compareSearchBar.contains(e.target) && !compareDropdown.contains(e.target)) {
+                    compareDropdown.classList.add('hidden');
                 }
-                searchBar.focus();
             });
-        }
 
-        function showFacultyDetails(faculty) {
-            const facultyName = document.getElementById('facultyName');
-            const rating = document.getElementById('rating');
-            const reviewContent = document.getElementById('reviewContent');
-            const finalRemark = document.getElementById('finalRemark');
+            // Renew search button
+            const renewSearchButton = document.getElementById('renewSearchButton');
+            if (renewSearchButton) {
+                renewSearchButton.addEventListener('click', () => {
+                    searchBar.value = '';
+                    dropdown.innerHTML = '';
+                    dropdown.classList.add('hidden');
+                    facultyDetailsSection.classList.add('hidden');
+                    compareSearchBar.value = '';
+                    compareDropdown.innerHTML = '';
+                    compareDropdown.classList.add('hidden');
+                    selectedFacultyList.innerHTML = '';
+                    comparisonResults.innerHTML = '';
+                    comparisonResults.classList.add('hidden');
+                    if (initialPrompt) {
+                        initialPrompt.textContent = 'Search for a faculty member to view their dossier.';
+                        initialPrompt.classList.remove('hidden');
+                    }
+                    searchBar.focus();
+                });
+            }
 
-            facultyName.textContent = faculty.name;
-            rating.innerHTML = generateStars(faculty.rating);
-            reviewContent.innerHTML = '';
-            finalRemark.textContent = '';
-            finalRemark.classList.remove('golden-glow-text');
+            // Display faculty details
+            function showFacultyDetails(faculty) {
+                selectedFaculty = faculty;
+                const facultyName = document.getElementById('facultyName');
+                const rating = document.getElementById('rating');
+                const reviewContent = document.getElementById('reviewContent');
+                const finalRemark = document.getElementById('finalRemark');
 
-            const reviewParts = faculty.review.split(', ');
-            let finalRemarkValue = '';
+                if (!facultyName || !rating || !reviewContent || !finalRemark) {
+                    console.error('Faculty details elements not found:', { facultyName, rating, reviewContent, finalRemark });
+                    return;
+                }
 
-            reviewParts.forEach(part => {
-                if (part.startsWith("Final Remark:")) {
-                    finalRemarkValue = part.replace("Final Remark:", "").trim();
+                facultyName.textContent = faculty.name || 'Unknown Faculty';
+                rating.innerHTML = formatRating(faculty.rating || '');
+                reviewContent.innerHTML = '';
+                finalRemark.textContent = '';
+                finalRemark.classList.remove('golden-glow-text');
+
+                if (faculty.review) {
+                    const reviewParts = faculty.review.split(', ');
+                    let finalRemarkValue = '';
+
+                    reviewParts.forEach(part => {
+                        if (part.startsWith('Final Remark:')) {
+                            finalRemarkValue = part.replace('Final Remark:', '').trim();
+                        } else {
+                            const p = document.createElement('p');
+                            p.classList.add('mb-1', 'text-left');
+                            p.textContent = part + (part.endsWith('.') || part.endsWith('🙂') || part.endsWith('🔥') || part.endsWith('🚫') ? '' : '.');
+                            reviewContent.appendChild(p);
+                        }
+                    });
+
+                    if (finalRemarkValue) {
+                        finalRemark.textContent = finalRemarkValue;
+                        finalRemark.classList.add('golden-glow-text');
+                    }
                 } else {
-                    const p = document.createElement('p');
-                    p.classList.add('mb-1', 'text-left');
-                    p.textContent = part + (part.endsWith('.') || part.endsWith('🙂') ? '' : '.');
-                    reviewContent.appendChild(p);
+                    reviewContent.innerHTML = '<p class="text-gray-500">No review available.</p>';
+                }
+
+                if (initialPrompt) initialPrompt.classList.add('hidden');
+                facultyDetailsSection.classList.remove('hidden');
+                const comparisonSection = document.getElementById('comparisonSection');
+                if (comparisonSection) comparisonSection.classList.remove('hidden');
+                console.log('Displayed faculty:', faculty);
+            }
+
+            // Format rating data
+            function formatRating(ratingData) {
+                if (!ratingData) return '<div class="text-gray-300">No rating data available</div>';
+
+                if (typeof ratingData === 'number') {
+                    return `<div class="text-teal-300">Average Rating:</div><div class="text-gray-300">${ratingData.toFixed(2)}</div>`;
+                }
+
+                const lines = ratingData.split('\n');
+                const ratings = {};
+                let currentCategory = '';
+
+                lines.forEach(line => {
+                    if (line.includes('Teaching Quality')) currentCategory = 'Teaching';
+                    else if (line.includes('Evaluation Fairness')) currentCategory = 'Evaluation';
+                    else if (line.includes('Behavior & Attitude')) currentCategory = 'Behaviour';
+                    else if (line.includes('Internal Assessment')) currentCategory = 'Internals';
+                    else if (line.includes('Class Average Perception')) currentCategory = 'Class Average';
+                    else if (line.includes('Average:') && currentCategory) {
+                        const avgMatch = line.match(/Average:\s*([\d.]+)/);
+                        if (avgMatch) ratings[currentCategory] = avgMatch[1];
+                    } else if (line.includes('high') || line.includes('medium') || line.includes('low')) {
+                        if (currentCategory === 'Class Average') {
+                            ratings[currentCategory] = line.includes('high') ? 'High' : line.includes('medium') ? 'Medium' : 'Low';
+                        }
+                    }
+                });
+
+                let html = '<div class="grid grid-cols-2 gap-2 text-sm">';
+                for (const [category, value] of Object.entries(ratings)) {
+                    html += `<div class="text-teal-300">${category}:</div><div class="text-gray-300">${value}</div>`;
+                }
+                html += '</div>';
+                return html;
+            }
+
+            // Comparison search handler
+            compareSearchBar.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase().trim();
+                compareDropdown.innerHTML = '';
+                compareDropdown.classList.add('hidden');
+
+                if (query.length === 0 || !facultyData.length) return;
+
+                const queryTokens = query.split(/\s+/).filter(token => token);
+                const matchedFacultySet = new Set();
+                const matchedFaculty = [];
+
+                queryTokens.forEach(token => {
+                    if (searchIndex[token]) {
+                        searchIndex[token].forEach(faculty => {
+                            if (!matchedFacultySet.has(faculty.name) && !comparedFaculties.some(f => f.name === faculty.name) && faculty.name !== selectedFaculty?.name) {
+                                matchedFacultySet.add(faculty.name);
+                                matchedFaculty.push({ ...faculty, score: 0 });
+                            }
+                        });
+                    }
+                    Object.keys(searchIndex).forEach(indexToken => {
+                        if (levenshtein(token, indexToken) <= 2) {
+                            searchIndex[indexToken].forEach(faculty => {
+                                if (!matchedFacultySet.has(faculty.name) && !comparedFaculties.some(f => f.name === faculty.name) && faculty.name !== selectedFaculty?.name) {
+                                    matchedFacultySet.add(faculty.name);
+                                    matchedFaculty.push({ ...faculty, score: 0 });
+                                }
+                            });
+                        }
+                    });
+                });
+
+                matchedFaculty.forEach(faculty => {
+                    const name = faculty.name.toLowerCase();
+                    faculty.score = queryTokens.reduce((score, token) => {
+                        let tokenScore = name.includes(token) ? 2 : 0;
+                        if (!tokenScore && name.split(/\s+/).some(nameToken => levenshtein(token, nameToken) <= 2)) {
+                            tokenScore += 1;
+                        }
+                        return score + tokenScore;
+                    }, 0);
+                });
+
+                matchedFaculty.sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));
+
+                if (matchedFaculty.length > 0) {
+                    compareDropdown.classList.remove('hidden');
+                    matchedFaculty.forEach(faculty => {
+                        const item = document.createElement('div');
+                        item.classList.add('dropdown-item', 'p-3', 'cursor-pointer', 'rounded-md', 'hover:bg-teal-900', 'transition-colors');
+                        item.innerHTML = `<span class="text-teal-300 font-semibold">${faculty.name}</span>`;
+                        item.addEventListener('click', () => {
+                            compareSearchBar.value = '';
+                            compareDropdown.classList.add('hidden');
+                            if (!comparedFaculties.some(f => f.name === faculty.name)) {
+                                comparedFaculties.push(faculty);
+                                updateSelectedFacultyList();
+                                showComparison([...comparedFaculties, selectedFaculty].filter(f => f));
+                            }
+                        });
+                        compareDropdown.appendChild(item);
+                    });
                 }
             });
 
-            if (finalRemarkValue) {
-                finalRemark.textContent = finalRemarkValue;
-                finalRemark.classList.add('golden-glow-text');
+            function updateSelectedFacultyList() {
+                selectedFacultyList.innerHTML = '';
+                comparedFaculties.forEach((faculty, index) => {
+                    const div = document.createElement('div');
+                    div.className = 'bg-gray-800 p-2 rounded-lg flex items-center justify-between w-full md:w-auto';
+                    div.innerHTML = `
+                        <span class="text-teal-300">${faculty.name}</span>
+                        <button class="ml-2 text-red-400 hover:text-red-600" data-index="${index}">✖</button>
+                    `;
+                    div.querySelector('button').addEventListener('click', () => {
+                        comparedFaculties.splice(index, 1);
+                        updateSelectedFacultyList();
+                        showComparison([...comparedFaculties, selectedFaculty].filter(f => f));
+                    });
+                    selectedFacultyList.appendChild(div);
+                });
             }
 
-            if (initialPrompt) {
-                initialPrompt.classList.add('hidden');
+            function showComparison(faculties) {
+                if (comparisonResults && faculties.length > 1) {
+                    // Define categories and colors
+                    const categories = ['Teaching', 'Evaluation', 'Behaviour', 'Internals', 'Class Average'];
+                    const colors = ['rgba(0, 255, 255, 0.7)', 'rgba(255, 215, 0, 0.7)', 'rgba(255, 99, 132, 0.7)', 'rgba(54, 162, 235, 0.7)', 'rgba(75, 192, 192, 0.7)'];
+
+                    // Prepare data for each faculty
+                    const facultyData = faculties.map(faculty => {
+                        const ratings = { Teaching: 0, Evaluation: 0, Behaviour: 0, Internals: 0, 'Class Average': 0 };
+                        if (typeof faculty.rating === 'string') {
+                            const lines = faculty.rating.split('\n');
+                            let currentCategory = '';
+                            lines.forEach(line => {
+                                if (line.includes('Teaching Quality')) currentCategory = 'Teaching';
+                                else if (line.includes('Evaluation Fairness')) currentCategory = 'Evaluation';
+                                else if (line.includes('Behavior & Attitude')) currentCategory = 'Behaviour';
+                                else if (line.includes('Internal Assessment')) currentCategory = 'Internals';
+                                else if (line.includes('Class Average Perception')) currentCategory = 'Class Average';
+                                else if (line.includes('Average:')) {
+                                    const avgMatch = line.match(/Average:\s*([\d.]+)/);
+                                    if (avgMatch) ratings[currentCategory] = parseFloat(avgMatch[1]) || 0;
+                                } else if (line.includes('high') || line.includes('medium') || line.includes('low')) {
+                                    if (currentCategory === 'Class Average') {
+                                        ratings[currentCategory] = line.includes('high') ? 4 : line.includes('medium') ? 3 : 2;
+                                    }
+                                }
+                            });
+                        } else if (typeof faculty.rating === 'number') {
+                            // If only an average is provided, distribute it evenly
+                            const avg = faculty.rating;
+                            ratings.Teaching = avg;
+                            ratings.Evaluation = avg;
+                            ratings.Behaviour = avg;
+                            ratings.Internals = avg;
+                            ratings['Class Average'] = avg > 3.5 ? 4 : avg > 2.5 ? 3 : 2;
+                        }
+                        return { name: faculty.name, ratings };
+                    });
+
+                    // Generate HTML for individual faculty cards with charts
+                    comparisonResults.innerHTML = `
+                        <div class="bg-gray-900 p-6 rounded-xl shadow-lg border-2 border-teal-500/50 animate-fade-in">
+                            <h3 class="text-2xl font-bold text-teal-300 mb-4 text-center">Comparison of ${faculties.length} Faculty</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                                ${facultyData.map((data, i) => `
+                                    <div class="bg-gray-800 p-4 rounded-lg shadow-md border border-teal-700/30 hover:shadow-teal-500/50 transition-shadow">
+                                        <h4 class="text-xl font-semibold text-teal-300 mb-2">${data.name}</h4>
+                                        <div class="mt-4">
+                                            <canvas id="chart${i}" class="w-full h-64"></canvas>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <div class="mt-6">
+                                <canvas id="comparisonChart" class="w-full h-64"></canvas>
+                            </div>
+                        </div>
+                    `;
+                    comparisonResults.classList.remove('hidden');
+
+                    // Individual charts for each faculty
+                    facultyData.forEach((data, i) => {
+                        const ctx = document.getElementById(`chart${i}`).getContext('2d');
+                        new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: categories,
+                                datasets: [{
+                                    label: data.name,
+                                    data: categories.map(cat => data.ratings[cat] || 0),
+                                    backgroundColor: colors[i % colors.length],
+                                    borderColor: colors[i % colors.length].replace('0.7', '1'),
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: { y: { beginAtZero: true, max: 5, title: { display: true, text: 'Rating' } } },
+                                plugins: { legend: { display: false } }
+                            }
+                        });
+                    });
+
+                    // Consolidated comparison chart
+                    const comparisonData = {
+                        labels: categories,
+                        datasets: facultyData.map((data, i) => ({
+                            label: data.name,
+                            data: categories.map(cat => data.ratings[cat] || 0),
+                            backgroundColor: colors[i % colors.length],
+                            borderColor: colors[i % colors.length].replace('0.7', '1'),
+                            borderWidth: 1
+                        }))
+                    };
+                    const ctx = document.getElementById('comparisonChart').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: comparisonData,
+                        options: {
+                            scales: { y: { beginAtZero: true, max: 5, title: { display: true, text: 'Rating' } } },
+                            plugins: { legend: { position: 'top' } },
+                            animation: { duration: 1000, easing: 'easeInOutQuad' }
+                        }
+                    });
+                } else if (faculties.length <= 1) {
+                    comparisonResults.innerHTML = '<p class="text-gray-400">Please select at least two faculty members to compare.</p>';
+                    comparisonResults.classList.remove('hidden');
+                }
             }
 
-            facultyDetailsSection.style.display = 'block';
-        }
-
-        function generateStars(ratingValue) {
-            let starsHtml = '';
-            for (let i = 1; i <= 5; i++) {
-                starsHtml += `<span class="star ${i <= Math.round(ratingValue) ? 'filled' : ''}">&#9733;</span>`;
+            if (clearComparisonButton) {
+                clearComparisonButton.addEventListener('click', () => {
+                    compareSearchBar.value = '';
+                    compareDropdown.innerHTML = '';
+                    compareDropdown.classList.add('hidden');
+                    selectedFacultyList.innerHTML = '';
+                    comparedFaculties = [];
+                    comparisonResults.innerHTML = '';
+                    comparisonResults.classList.add('hidden');
+                });
             }
-            return starsHtml;
         }
 
-        if (initialPrompt) {
-            initialPrompt.classList.remove('hidden');
-            facultyDetailsSection.style.display = 'none';
+        // Handle fragment navigation (moved to global scope)
+        function handleFragmentNavigation() {
+            const hash = window.location.hash;
+            if (hash) {
+                setTimeout(() => {
+                    const target = document.querySelector(hash);
+                    if (target) {
+                        const navbarHeight = document.querySelector('#navbar')?.offsetHeight || 64;
+                        const offsetTop = target.getBoundingClientRect().top + window.scrollY - navbarHeight;
+                        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+                    } else {
+                        console.warn(`Element with ID ${hash} not found`);
+                    }
+                }, 100);
+            }
         }
-    }
-</script>
+
+        window.addEventListener('hashchange', handleFragmentNavigation);
+    </script>
 </body>
 
 </html>
