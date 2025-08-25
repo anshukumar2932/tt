@@ -30,7 +30,7 @@
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
-            min-height: 10vh;
+            min-height: 100vh;
         }
 
         .glow-button {
@@ -276,7 +276,7 @@
             }
         }
 
-        .hover:shadow-teal-500/50:hover {
+        .hover:shadow-teal-500\/50:hover {
             box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
         }
 
@@ -502,7 +502,11 @@
                 const matchedFacultySet = new Set();
                 const matchedFaculty = [];
 
+                // Dynamic Levenshtein threshold based on query length
+                const levenshteinThreshold = Math.max(2, Math.floor(query.length / 3));
+
                 queryTokens.forEach(token => {
+                    // Exact and prefix matching
                     if (searchIndex[token]) {
                         searchIndex[token].forEach(faculty => {
                             if (!matchedFacultySet.has(faculty.name)) {
@@ -511,8 +515,11 @@
                             }
                         });
                     }
+                    // Fuzzy matching with dynamic threshold
                     Object.keys(searchIndex).forEach(indexToken => {
-                        if (levenshtein(token, indexToken) <= 2) {
+                        const levDistance = levenshtein(token, indexToken);
+                        const normalizedLev = levDistance / Math.max(token.length, indexToken.length);
+                        if (levDistance <= levenshteinThreshold || normalizedLev <= 0.3) {
                             searchIndex[indexToken].forEach(faculty => {
                                 if (!matchedFacultySet.has(faculty.name)) {
                                     matchedFacultySet.add(faculty.name);
@@ -521,14 +528,34 @@
                             });
                         }
                     });
+                    // Prefix matching for whole name
+                    facultyData.forEach(faculty => {
+                        const nameLower = faculty.name.toLowerCase();
+                        if (nameLower.startsWith(token) && !matchedFacultySet.has(faculty.name)) {
+                            matchedFacultySet.add(faculty.name);
+                            matchedFaculty.push({ ...faculty, score: 0 });
+                        }
+                    });
                 });
 
                 matchedFaculty.forEach(faculty => {
                     const name = faculty.name.toLowerCase();
                     faculty.score = queryTokens.reduce((score, token) => {
-                        let tokenScore = name.includes(token) ? 2 : 0;
-                        if (!tokenScore && name.split(/\s+/).some(nameToken => levenshtein(token, nameToken) <= 2)) {
-                            tokenScore += 1;
+                        let tokenScore = 0;
+                        // Exact match
+                        if (name.includes(token)) {
+                            tokenScore += 3;
+                        }
+                        // Prefix match
+                        if (name.startsWith(token)) {
+                            tokenScore += 2;
+                        }
+                        // Fuzzy match
+                        const nameTokens = name.split(/\s+/);
+                        const minLev = Math.min(...nameTokens.map(nameToken => levenshtein(token, nameToken)));
+                        const normalizedLev = minLev / Math.max(token.length, Math.max(...nameTokens.map(t => t.length)));
+                        if (minLev <= levenshteinThreshold || normalizedLev <= 0.3) {
+                            tokenScore += 1 / (minLev + 1); // Inverse to favor closer matches
                         }
                         return score + tokenScore;
                     }, 0);
@@ -707,6 +734,7 @@
                 const queryTokens = query.split(/\s+/).filter(token => token);
                 const matchedFacultySet = new Set();
                 const matchedFaculty = [];
+                const levenshteinThreshold = Math.max(2, Math.floor(query.length / 3));
 
                 queryTokens.forEach(token => {
                     if (searchIndex[token]) {
@@ -718,7 +746,9 @@
                         });
                     }
                     Object.keys(searchIndex).forEach(indexToken => {
-                        if (levenshtein(token, indexToken) <= 2) {
+                        const levDistance = levenshtein(token, indexToken);
+                        const normalizedLev = levDistance / Math.max(token.length, indexToken.length);
+                        if (levDistance <= levenshteinThreshold || normalizedLev <= 0.3) {
                             searchIndex[indexToken].forEach(faculty => {
                                 if (!matchedFacultySet.has(faculty.name) && !comparedFaculties.some(f => f.name === faculty.name) && faculty.name !== selectedFaculty?.name) {
                                     matchedFacultySet.add(faculty.name);
@@ -727,14 +757,30 @@
                             });
                         }
                     });
+                    facultyData.forEach(faculty => {
+                        const nameLower = faculty.name.toLowerCase();
+                        if (nameLower.startsWith(token) && !matchedFacultySet.has(faculty.name) && !comparedFaculties.some(f => f.name === faculty.name) && faculty.name !== selectedFaculty?.name) {
+                            matchedFacultySet.add(faculty.name);
+                            matchedFaculty.push({ ...faculty, score: 0 });
+                        }
+                    });
                 });
 
                 matchedFaculty.forEach(faculty => {
                     const name = faculty.name.toLowerCase();
                     faculty.score = queryTokens.reduce((score, token) => {
-                        let tokenScore = name.includes(token) ? 2 : 0;
-                        if (!tokenScore && name.split(/\s+/).some(nameToken => levenshtein(token, nameToken) <= 2)) {
-                            tokenScore += 1;
+                        let tokenScore = 0;
+                        if (name.includes(token)) {
+                            tokenScore += 3;
+                        }
+                        if (name.startsWith(token)) {
+                            tokenScore += 2;
+                        }
+                        const nameTokens = name.split(/\s+/);
+                        const minLev = Math.min(...nameTokens.map(nameToken => levenshtein(token, nameToken)));
+                        const normalizedLev = minLev / Math.max(token.length, Math.max(...nameTokens.map(t => t.length)));
+                        if (minLev <= levenshteinThreshold || normalizedLev <= 0.3) {
+                            tokenScore += 1 / (minLev + 1);
                         }
                         return score + tokenScore;
                     }, 0);
@@ -902,7 +948,7 @@
             }
         }
 
-        // Handle fragment navigation (moved to global scope)
+        // Handle fragment navigation
         function handleFragmentNavigation() {
             const hash = window.location.hash;
             if (hash) {
